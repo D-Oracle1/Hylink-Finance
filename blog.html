@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Business Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  html {
+    scroll-behavior: smooth;}
+    body {font-family: 'Poppins', sans-serif;}
+</style>
+</head>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full bg-[#011430]/90 backdrop-blur-md shadow z-50 transition duration-300">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <!-- Logo -->
+    <img src="logo.png" alt="HYLINK Logo" class="w-40" data-aos="fade-right">
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex">
+      <ul class="flex items-center space-x-6 font-semibold text-gray-300" data-aos="fade-left">
+        <li><a href="index.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Home</a></li>
+        <li><a href="aboutus.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">About</a></li>
+        <li><a href="services.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Services</a></li>
+        <li><a href="company.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Company</a></li>
+        <li><a href="blog.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Blog</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <button id="menu-btn" class="md:hidden flex flex-col justify-between w-6 h-5 focus:outline-none">
+      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
+      <span class="block w-full h-0.5 bg-white transition-opacity duration-300"></span>
+      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out md:hidden bg-[#011430]/95 backdrop-blur-md">
+    <ul class="flex flex-col items-center space-y-6 py-6 font-semibold text-gray-300 opacity-0 translate-y-5 transition-all duration-500">
+      <li class="transition-all duration-500 delay-100"><a href="index.html" class="hover:text-orange-500 hover:scale-110 transform transition">Home</a></li>
+      <li class="transition-all duration-500 delay-200"><a href="aboutus.html" class="hover:text-orange-500 hover:scale-110 transform transition">About</a></li>
+      <li class="transition-all duration-500 delay-300"><a href="services.html" class="hover:text-orange-500 hover:scale-110 transform transition">Services</a></li>
+      <li class="transition-all duration-500 delay-400"><a href="company.html" class="hover:text-orange-500 hover:scale-110 transform transition">Company</a></li>
+      <li class="transition-all duration-500 delay-500"><a href="blog.html" class="hover:text-orange-500 hover:scale-110 transform transition">Blog</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- JS for Toggle with Animations -->
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const spans = menuBtn.querySelectorAll("span");
+  const menuItems = mobileMenu.querySelector("ul");
+
+  menuBtn.addEventListener("click", () => {
+    // Animate hamburger into X
+    spans[0].classList.toggle("rotate-45");
+    spans[0].classList.toggle("translate-y-2");
+
+    spans[1].classList.toggle("opacity-0");
+
+    spans[2].classList.toggle("-rotate-45");
+    spans[2].classList.toggle("-translate-y-2");
+
+    // Slide down / up menu
+    if (mobileMenu.classList.contains("max-h-0")) {
+      mobileMenu.classList.remove("max-h-0");
+      mobileMenu.classList.add("max-h-screen");
+
+      // Fade + slide in items
+      setTimeout(() => {
+        menuItems.classList.remove("opacity-0", "translate-y-5");
+        menuItems.classList.add("opacity-100", "translate-y-0");
+      }, 100);
+    } else {
+      mobileMenu.classList.remove("max-h-screen");
+      mobileMenu.classList.add("max-h-0");
+
+      // Fade out items
+      menuItems.classList.add("opacity-0", "translate-y-5");
+      menuItems.classList.remove("opacity-100", "translate-y-0");
+    }
+  });
+</script>
+
+
+<!-- Auto Active Link Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentPage = window.location.pathname.split("/").pop(); 
+    const links = document.querySelectorAll("nav ul li a");
+
+    links.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("text-orange-500", "font-bold");
+      }
+    });
+  });
+</script>
+
+<body class="font-sans text-gray-800 bg-gray-100 min-h-screen flex flex-col">
+  <!-- Hero Section -->
+  <section class="relative h-[70vh] flex items-center justify-center text-center text-white overflow-hidden">
+    <div class="absolute inset-0 bg-[url('markus-winkler-JXaxMUsuWSQ-unsplash.jpg')] bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#011430]/70 to-orange-500/70"></div>
+    <div class="relative z-10 px-6" data-aos="fade-up">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">Welcome to Our Blog</h1>
+      <p class="text-lg md:text-xl max-w-2xl mx-auto">Never Miss Out on any Update</p>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="py-20 bg-gray-50 text-center flex-grow">
+    <h2 class="text-3xl font-bold mb-10">Our Blog</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+      <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 w-80 bg-white shadow-md hover:-translate-y-2 transition">
+        <i class="fas fa-newspaper text-4xl text-orange-500"></i>
+        <h3 class="text-xl font-semibold mt-4">Coming Soon</h3>
+        <p class="text-sm text-gray-600 mt-2">Stay tuned for articles and insights from HY-LINK Finance.</p>
+      </div>
+      <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 w-80 bg-white shadow-md hover:-translate-y-2 transition">
+        <i class="fas fa-pen-fancy text-4xl text-blue-500"></i>
+        <h3 class="text-xl font-semibold mt-4">Coming Soon</h3>
+        <p class="text-sm text-gray-600 mt-2">We’ll be sharing financial tips, updates, and success stories soon.</p>
+      </div>
+    </div>
+  </section> <!-- ✅ Closed Blog Section -->
+
+  <!-- Footer -->
+  <footer class="bg-[#011430] text-gray-300 py-10">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6">
+      
+      <div data-aos="fade-up">
+        <img src="logo.png" alt="HY-LINK Finance Logo" class="w-40 mb-4">
+        <p class="text-sm">HY-LINK FINANCE LIMITED is committed to empowering clients through reliable savings, partnerships, funding, and consultancy services.</p>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="aboutus.html" class="hover:text-white">About</a></li>
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="company.html" class="hover:text-white">Company</a></li>
+          <li><a href="blog.html" class="hover:text-white">Blog</a></li>
+        </ul>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h4 class="font-semibold mb-4 text-white">Contact</h4>
+        <p class="text-sm">hylinkfinance@gmail.com</p>
+        <p class="text-sm">+234 800 000 0000</p>
+        <div class="flex space-x-3 mt-4">
+          <a href="#" aria-label="Facebook" class="text-white hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter" class="text-white hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn" class="text-white hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h4 class="font-semibold mb-4 text-white">Subscribe to our Newsletter</h4>
+        <form action="https://formspree.io/f/xandvzde" method="POST" class="flex flex-col gap-4">
+          <input type="email" name="email" placeholder="Enter your email" required class="p-3 border rounded-md text-black">
+          <button type="submit" class="bg-orange-500 hover:bg-gray-800 text-white px-6 py-3 rounded-md">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-6">
+      © 2025 HY-LINK Finance Limited. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+
+</body>
+</html>

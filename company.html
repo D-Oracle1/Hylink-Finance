@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - HY-LINK FINANCE LIMITED</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- AOS Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <style>
+  html {
+    scroll-behavior: smooth;}
+    body {font-family: 'Poppins', sans-serif;}
+</style>
+</head>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full bg-[#011430]/90 backdrop-blur-md shadow z-50 transition duration-300">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <!-- Logo -->
+    <img src="logo.png" alt="HYLINK Logo" class="w-40" data-aos="fade-right">
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex">
+      <ul class="flex items-center space-x-6 font-semibold text-gray-300" data-aos="fade-left">
+        <li><a href="index.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Home</a></li>
+        <li><a href="aboutus.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">About</a></li>
+        <li><a href="services.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Services</a></li>
+        <li><a href="company.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Company</a></li>
+        <li><a href="blog.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Blog</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <button id="menu-btn" class="md:hidden flex flex-col justify-between w-6 h-5 focus:outline-none">
+      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
+      <span class="block w-full h-0.5 bg-white transition-opacity duration-300"></span>
+      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out md:hidden bg-[#011430]/95 backdrop-blur-md">
+    <ul class="flex flex-col items-center space-y-6 py-6 font-semibold text-gray-300 opacity-0 translate-y-5 transition-all duration-500">
+      <li class="transition-all duration-500 delay-100"><a href="index.html" class="hover:text-orange-500 hover:scale-110 transform transition">Home</a></li>
+      <li class="transition-all duration-500 delay-200"><a href="aboutus.html" class="hover:text-orange-500 hover:scale-110 transform transition">About</a></li>
+      <li class="transition-all duration-500 delay-300"><a href="services.html" class="hover:text-orange-500 hover:scale-110 transform transition">Services</a></li>
+      <li class="transition-all duration-500 delay-400"><a href="company.html" class="hover:text-orange-500 hover:scale-110 transform transition">Company</a></li>
+      <li class="transition-all duration-500 delay-500"><a href="blog.html" class="hover:text-orange-500 hover:scale-110 transform transition">Blog</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- JS for Toggle with Animations -->
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const spans = menuBtn.querySelectorAll("span");
+  const menuItems = mobileMenu.querySelector("ul");
+
+  menuBtn.addEventListener("click", () => {
+    // Animate hamburger into X
+    spans[0].classList.toggle("rotate-45");
+    spans[0].classList.toggle("translate-y-2");
+
+    spans[1].classList.toggle("opacity-0");
+
+    spans[2].classList.toggle("-rotate-45");
+    spans[2].classList.toggle("-translate-y-2");
+
+    // Slide down / up menu
+    if (mobileMenu.classList.contains("max-h-0")) {
+      mobileMenu.classList.remove("max-h-0");
+      mobileMenu.classList.add("max-h-screen");
+
+      // Fade + slide in items
+      setTimeout(() => {
+        menuItems.classList.remove("opacity-0", "translate-y-5");
+        menuItems.classList.add("opacity-100", "translate-y-0");
+      }, 100);
+    } else {
+      mobileMenu.classList.remove("max-h-screen");
+      mobileMenu.classList.add("max-h-0");
+
+      // Fade out items
+      menuItems.classList.add("opacity-0", "translate-y-5");
+      menuItems.classList.remove("opacity-100", "translate-y-0");
+    }
+  });
+</script>
+
+
+<!-- Auto Active Link Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentPage = window.location.pathname.split("/").pop(); 
+    const links = document.querySelectorAll("nav ul li a");
+
+    links.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("text-orange-500", "font-bold");
+      }
+    });
+  });
+</script>
+
+
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <section 
+    class="relative w-full h-[450px] flex flex-col justify-center items-center text-center px-6 bg-cover bg-center" 
+    style="background-image: url('Image_fx (7).jpg');">
+    
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#011430]/70 to-[#011430]/50 bg-black/60" 
+      data-aos="fade-in" data-aos-duration="1200"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-white" data-aos="fade-up" data-aos-delay="200">
+      <h2 class="text-4xl md:text-5xl font-bold mb-3">Our Sister Company</h2>
+      <p class="text-lg md:text-xl max-w-2xl mx-auto">
+        We meet you at different points of your Need!
+      </p>
+    </div>
+  </section>
+
+  <!-- Sister Companies -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-orange-500 text-3xl font-bold text-center mb-12" data-aos="fade-up">Our Sister Companies</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
+
+        <!-- HY-LINK Global Services -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="100">
+          <div class="flex items-center justify-center w-16 h-16 bg-orange-100 text-orange-600 rounded-full mb-6">
+            <i class="ri-car-line text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">HY-LINK Global Services</h3>
+          <p class="text-gray-600">
+            At HY-LINK Global Services, we provide reliable 
+            <span class="text-orange-500 font-medium">transportation and logistics solutions</span> 
+            designed to make movement and delivery simple, secure, and efficient. Whether you need a car for business or leisure, trusted security escorts, or timely delivery of goods, we are here to serve you.
+          </p>
+        </div>
+
+        <!-- Expansion / Future Arm -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="200">
+          <div class="flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-full mb-6">
+            <i class="ri-rocket-line text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Future Ventures</h3>
+          <p class="text-gray-600">We continue to expand into new sectors to deliver value and innovative solutions across industries.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HY-LINK Global Services Details -->
+  <section id="company" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-gray-800 mb-6" data-aos="fade-up">About HY-LINK Global Services</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+        We specialize in providing <span class="font-semibold text-orange-500">Car Hiring, Delivery Services, and Security Escort Solutions</span>. 
+        Our mission is to ensure safe, efficient, and reliable transport and logistics services that meet the diverse needs of individuals and businesses alike.
+      </p>
+    </div>
+
+    <!-- Services -->
+    <div class="max-w-6xl mx-auto px-6 mt-16 grid md:grid-cols-3 gap-8 text-center">
+      <!-- Car Hire -->
+      <div class="bg-white shadow-md rounded-2xl p-8 hover:-translate-y-2 transition" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-car text-5xl text-orange-500"></i>
+        <h3 class="text-xl font-semibold mt-4">Car Hiring Services</h3>
+        <p class="text-gray-600 mt-3 text-sm">
+          Wide range of well-maintained vehicles for executive trips, airport transfers, meetings, and special occasions.
+        </p>
+      </div>
+
+      <!-- Delivery -->
+      <div class="bg-white shadow-md rounded-2xl p-8 hover:-translate-y-2 transition" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-truck text-5xl text-blue-500"></i>
+        <h3 class="text-xl font-semibold mt-4">Delivery Solutions</h3>
+        <p class="text-gray-600 mt-3 text-sm">
+          Safe, reliable, and timely delivery of parcels and bulk consignments with precision and care.
+        </p>
+      </div>
+
+      <!-- Security -->
+      <div class="bg-white shadow-md rounded-2xl p-8 hover:-translate-y-2 transition" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-shield-alt text-5xl text-green-500"></i>
+        <h3 class="text-xl font-semibold mt-4">Security Escort Services</h3>
+        <p class="text-gray-600 mt-3 text-sm">
+          Professional and trusted security escorts ensuring your safety and peace of mind wherever you go.
+        </p>
+      </div>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="max-w-5xl mx-auto px-6 mt-20 grid md:grid-cols-2 gap-12 text-center md:text-left">
+      <div data-aos="fade-right">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
+        <p class="text-gray-600">
+          To deliver world-class transportation and logistics services that combine 
+          <span class="text-orange-500 font-medium">efficiency, safety, and customer satisfaction</span>.
+        </p>
+      </div>
+      <div data-aos="fade-left">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
+        <p class="text-gray-600">
+          To become a leading brand in transportation and logistics across Africa, trusted for 
+          <span class="text-orange-500 font-medium">innovation, professionalism, and excellence</span>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+   <!-- Meet Our Team -->
+  <section id="team" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-gray-800 mb-6" data-aos="fade-up">Meet Our Team</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">
+        Our success is driven by a passionate and dedicated team of professionals committed to delivering 
+        excellence, innovation, and outstanding service to our clients.
+      </p>
+
+      <!-- Team Grid -->
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+        
+       
+        <!-- Team Member 1 -->
+        <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg p-6 text-center transition" data-aos="zoom-in" data-aos-delay="200">
+          <img src="Portrait of a smiling beautiful woman standing alone on a yellow background.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+          <h3 class="text-xl font-semibold">Lucy Elijah</h3>
+          <p class="text-sm text-gray-500">General Manager</p>
+          <div class="flex justify-center space-x-3 mt-4">
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg p-6 text-center transition" data-aos="zoom-in" data-aos-delay="300">
+          <img src="createpersonal _ Instagram, Facebook, TikTok _ Linktree.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+          <h3 class="text-xl font-semibold">Peace Ezeh</h3>
+          <p class="text-sm text-gray-500">Human Resource Manager</p>
+          <div class="flex justify-center space-x-3 mt-4">
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+         <!-- Team Member 3 -->
+        <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg p-6 text-center transition" data-aos="zoom-in" data-aos-delay="100">
+          <img src="joey.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+          <h3 class="text-xl font-semibold">Emmanuel Joseph Abraham</h3>
+          <p class="text-sm text-gray-500">Chief Technical Officer</p>
+          <div class="flex justify-center space-x-3 mt-4">
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg p-6 text-center transition" data-aos="zoom-in" data-aos-delay="100">
+          <img src="joey.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+          <h3 class="text-xl font-semibold">Data Raymond</h3>
+          <p class="text-sm text-gray-500">Head of Marketting</p>
+          <div class="flex justify-center space-x-3 mt-4">
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Team Member 5 -->
+        <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg p-6 text-center transition" data-aos="zoom-in" data-aos-delay="100">
+          <img src="joey.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+          <h3 class="text-xl font-semibold">Rosemary Agbakuru</h3>
+          <p class="text-sm text-gray-500">Customer Relations Manager</p>
+          <div class="flex justify-center space-x-3 mt-4">
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+         <!-- Team Member 6 -->
+        <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg p-6 text-center transition" data-aos="zoom-in" data-aos-delay="100">
+          <img src="1747901916727.png" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+          <h3 class="text-xl font-semibold">Wemedo Grant Chika</h3>
+          <p class="text-sm text-gray-500">Financial Advisor</p>
+          <div class="flex justify-center space-x-3 mt-4">
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="bg-[#011430] text-gray-300 py-10">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6">
+      <div data-aos="fade-up">
+        <img src="logo.png" alt="Logo" class="w-40 mb-4">
+        <p class="text-sm">HY-LINK FINANCE LIMITED is committed to empowering clients through reliable savings, partnerships, funding, and consultancy services.</p>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="aboutus.html" class="hover:text-white">About</a></li>
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="company.html" class="hover:text-white">Company</a></li>
+          <li><a href="blog.html" class="hover:text-white">Blog</a></li>
+        </ul>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h4 class="font-semibold mb-4 text-white">Contact</h4>
+        <p class="text-sm">hylinkfinance@gmail.com</p>
+        <p class="text-sm">+234 800 000 0000</p>
+        <div class="flex space-x-3 mt-4">
+          <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Newsletter Subscription -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h4 class="font-semibold mb-4 text-white">Subscribe to our Newsletter</h4>
+        <form action="https://formspree.io/f/xandvzde" method="POST" class="flex flex-col gap-4">
+          <input type="email" name="email" placeholder="Enter your email" required class="p-3 border rounded-md text-black">
+          <button type="submit" class="bg-orange-500 hover:bg-gray-800 text-white px-6 py-3 rounded-md">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-6">
+      © 2025 HY-LINK Finance Limited. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
