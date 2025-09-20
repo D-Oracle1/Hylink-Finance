@@ -44,22 +44,28 @@
   </div>
 
   <script>
-    const username = "D-Oracle1";  
-    const repo = "Hylink-Finance"; 
-    const branch = "main";         
+async function fetchImages(folder) {
+  const username = "D-Oracle1";
+  const repo = "Hylink-Finance";
+  const branch = "main";
 
-    // Fetch images from a folder
-    async function fetchImagesFromGitHub(folder) {
-      const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error("GitHub API error");
-        return await response.json();
-      } catch (error) {
-        console.error("Error fetching images:", error);
-        return [];
-      }
+  // 🔹 Use raw.githubusercontent.com instead of API
+  const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
+  const response = await fetch(apiUrl);
+  const files = await response.json();
+
+  const imageList = [];
+  for (const file of files) {
+    if (file.type === "file") {
+      // Direct raw GitHub URL
+      imageList.push(`https://raw.githubusercontent.com/${username}/${repo}/${branch}/${folder}/${file.name}`);
     }
+  }
+
+  return imageList;
+}
+</script>
+
 
     // Gallery
     async function initGallery() {
@@ -195,3 +201,4 @@
   </script>
 </body>
 </html>
+
