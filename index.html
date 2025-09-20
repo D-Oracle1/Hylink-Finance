@@ -44,33 +44,26 @@
   </div>
 
  <script>
-  // your JavaScript here
-  async function initGallery() {
-    const files = await fetchImagesFromGitHub("img");
-    const imageList = [];
-    const slider = document.getElementById("slider");
+async function fetchImages(folder) {
+  const username = "D-Oracle1";
+  const repo = "Hylink-Finance";
+  const branch = "main";
 
-    files.forEach(file => {
-      if (file.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
-        imageList.push(file.download_url);
-      }
-    });
+  // 🔹 Use raw.githubusercontent.com instead of API
+  const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
+  const response = await fetch(apiUrl);
+  const files = await response.json();
 
-    // ... rest of your code ...
+  const imageList = [];
+  for (const file of files) {
+    if (file.type === "file") {
+      // Direct raw GitHub URL
+      imageList.push(`https://raw.githubusercontent.com/${username}/${repo}/${branch}/${folder}/${file.name}`);
+    }
   }
 
-  async function initAdvert() {
-    const files = await fetchImagesFromGitHub("advert");
-    const advertList = [];
-    const advertSlides = document.getElementById("advertSlides");
-
-    files.forEach(file => {
-      if (file.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
-        advertList.push(file.download_url);
-      }
-    });
-
-    // ... rest of your code ...
+  return imageList;
+}
 
     // Gallery
     async function initGallery() {
