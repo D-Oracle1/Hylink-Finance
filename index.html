@@ -340,13 +340,14 @@
 </section>
 
 
-<!-- Modal -->
+<!-- Lightbox Modal -->
 <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50 opacity-0 transition-opacity duration-500">
   <span id="closeModal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
   <button id="prevBtn" class="absolute left-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&larr;</button>
   <img id="modalImage" class="max-w-4xl max-h-[90vh] rounded-lg shadow-lg transform scale-90 opacity-0 transition duration-500 ease-out" />
   <button id="nextBtn" class="absolute right-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&rarr;</button>
 </div>
+
 
 <script>
 async function loadGallery() {
@@ -361,7 +362,6 @@ async function loadGallery() {
 
   const sliderWrapper = document.getElementById("sliderWrapper");
   const slider = document.getElementById("slider");
-  const progressBar = document.getElementById("progressBar");
   const imageList = [];
 
   // Load images
@@ -371,85 +371,73 @@ async function loadGallery() {
 
       const imgEl = document.createElement("img");
       imgEl.src = file.download_url;
-      imgEl.className = "h-48 w-auto rounded-lg shadow cursor-pointer flex-shrink-0";
+      imgEl.className = "h-48 w-auto rounded-lg shadow flex-shrink-0 cursor-pointer";
       slider.appendChild(imgEl);
 
+      // 🔹 Open lightbox on click
       imgEl.addEventListener("click", () => openModal(imageList.indexOf(file.download_url)));
     }
   });
 
-  // ✅ Ensure images are loaded before auto-scroll starts
-  await new Promise(resolve => setTimeout(resolve, 500));
-
-  // 🔹 Progress bar update
-  function updateProgress() {
-    const maxScroll = sliderWrapper.scrollWidth - sliderWrapper.clientWidth;
-    if (maxScroll > 0) {
-      const progress = sliderWrapper.scrollLeft / maxScroll;
-      progressBar.style.width = `${progress * 100}%`;
-    } else {
-      progressBar.style.width = `0%`;
-    }
-  }
-
-  // 🔹 Auto-scroll
-  let scrollSpeed = 0.5; // pixels per frame (slightly faster)
+  // ✅ Auto-scroll
+  let scrollSpeed = 0.3;
   let isPaused = false;
-
   function autoScroll() {
     if (!isPaused && sliderWrapper.scrollWidth > sliderWrapper.clientWidth) {
       sliderWrapper.scrollLeft += scrollSpeed;
-
-      // Loop back
       if (sliderWrapper.scrollLeft + sliderWrapper.clientWidth >= sliderWrapper.scrollWidth) {
         sliderWrapper.scrollLeft = 0;
       }
-      updateProgress();
     }
     requestAnimationFrame(autoScroll);
   }
   autoScroll();
-
-  // Hover pause
   sliderWrapper.addEventListener("mouseenter", () => isPaused = true);
   sliderWrapper.addEventListener("mouseleave", () => isPaused = false);
 
-  // Drag-to-scroll (desktop)
-  let isDown = false, startX, scrollLeft;
-  sliderWrapper.addEventListener("mousedown", (e) => {
-    isDown = true;
-    startX = e.pageX - sliderWrapper.offsetLeft;
-    scrollLeft = sliderWrapper.scrollLeft;
-    sliderWrapper.classList.add("cursor-grabbing");
-    isPaused = true;
-  });
-  sliderWrapper.addEventListener("mouseleave", () => { isDown = false; sliderWrapper.classList.remove("cursor-grabbing"); });
-  sliderWrapper.addEventListener("mouseup", () => { isDown = false; sliderWrapper.classList.remove("cursor-grabbing"); isPaused = false; });
-  sliderWrapper.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - sliderWrapper.offsetLeft;
-    const walk = (x - startX) * 2;
-    sliderWrapper.scrollLeft = scrollLeft - walk;
-    updateProgress();
-  });
+  // ✅ Modal logic
+  const imageModal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  const closeModal = document.getElementById("closeModal");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  let currentIndex = 0;
 
-  // Touch swipe
-  let touchStartX = 0;
-  sliderWrapper.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].pageX;
-    scrollLeft = sliderWrapper.scrollLeft;
-    isPaused = true;
-  });
-  sliderWrapper.addEventListener("touchmove", (e) => {
-    const x = e.touches[0].pageX;
-    const walk = (x - touchStartX) * 2;
-    sliderWrapper.scrollLeft = scrollLeft - walk;
-    updateProgress();
-  });
-  sliderWrapper.addEventListener("touchend", () => isPaused = false);
+  function openModal(index) {
+    currentIndex = index;
+    modalImage.src = imageList[currentIndex];
+    imageModal.classList.remove("hidden");
+    requestAnimationFrame(() => {
+      imageModal.classList.remove("opacity-0");
+      modalImage.classList.remove("scale-90", "opacity-0");
+      modalImage.classList.add("scale-100", "opacity-100");
+    });
+  }
+  function closeModalFunc() {
+    imageModal.classList.add("opacity-0");
+    modalImage.classList.add("scale-90", "opacity-0");
+    modalImage.classList.remove("scale-100", "opacity-100");
+    setTimeout(() => imageModal.classList.add("hidden"), 500);
+  }
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+    modalImage.src = imageList[currentIndex];
+  }
+  function showNext() {
+    currentIndex = (currentIndex + 1) % imageList.length;
+    modalImage.src = imageList[currentIndex];
+  }
 
-  /* 🔹 Modal code stays the same */
+  // Events
+  closeModal.addEventListener("click", closeModalFunc);
+  prevBtn.addEventListener("click", showPrev);
+  nextBtn.addEventListener("click", showNext);
+  imageModal.addEventListener("click", (e) => { if (e.target === imageModal) closeModalFunc(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModalFunc();
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+  });
 }
 document.addEventListener("DOMContentLoaded", loadGallery);
 </script>
