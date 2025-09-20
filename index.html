@@ -330,22 +330,24 @@
 
     <!-- Scrollable gallery -->
     <div id="sliderWrapper" class="relative w-full overflow-x-auto">
-      <div id="slider" class="flex space-x-4 pb-6 cursor-grab"></div>
-      <!-- 🔹 Progress bar -->
-      <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-300 rounded-full overflow-hidden">
-        <div id="progressBar" class="h-1 bg-blue-500 transition-all duration-150"></div>
-      </div>
+      <div id="slider" class="flex space-x-4 pb-4"></div>
     </div>
   </div>
 </section>
 
-
 <!-- Lightbox Modal -->
-<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50 opacity-0 transition-opacity duration-500">
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
+  <!-- Close button -->
   <span id="closeModal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
-  <button id="prevBtn" class="absolute left-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&larr;</button>
-  <img id="modalImage" class="max-w-4xl max-h-[90vh] rounded-lg shadow-lg transform scale-90 opacity-0 transition duration-500 ease-out" />
-  <button id="nextBtn" class="absolute right-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&rarr;</button>
+
+  <!-- Prev button -->
+  <button id="prevBtn" class="absolute left-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">&larr;</button>
+
+  <!-- Image -->
+  <img id="modalImage" class="rounded-lg shadow-lg max-w-[90%] max-h-[80vh] object-contain transform transition-transform duration-300 opacity-0 scale-95" />
+
+  <!-- Next button -->
+  <button id="nextBtn" class="absolute right-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">&rarr;</button>
 </div>
 
 
@@ -364,7 +366,7 @@ async function loadGallery() {
   const slider = document.getElementById("slider");
   const imageList = [];
 
-  // Load images
+  // Load images dynamically
   files.forEach(file => {
     if (file.type === "file" && file.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
       imageList.push(file.download_url);
@@ -380,8 +382,9 @@ async function loadGallery() {
   });
 
   // ✅ Auto-scroll
-  let scrollSpeed = 0.3;
+  let scrollSpeed = 0.3; // adjust speed
   let isPaused = false;
+
   function autoScroll() {
     if (!isPaused && sliderWrapper.scrollWidth > sliderWrapper.clientWidth) {
       sliderWrapper.scrollLeft += scrollSpeed;
@@ -392,6 +395,7 @@ async function loadGallery() {
     requestAnimationFrame(autoScroll);
   }
   autoScroll();
+
   sliderWrapper.addEventListener("mouseenter", () => isPaused = true);
   sliderWrapper.addEventListener("mouseleave", () => isPaused = false);
 
@@ -407,28 +411,29 @@ async function loadGallery() {
     currentIndex = index;
     modalImage.src = imageList[currentIndex];
     imageModal.classList.remove("hidden");
-    requestAnimationFrame(() => {
-      imageModal.classList.remove("opacity-0");
-      modalImage.classList.remove("scale-90", "opacity-0");
-      modalImage.classList.add("scale-100", "opacity-100");
-    });
+    modalImage.classList.remove("opacity-0", "scale-95");
+    modalImage.classList.add("opacity-100", "scale-100");
   }
+
   function closeModalFunc() {
-    imageModal.classList.add("opacity-0");
-    modalImage.classList.add("scale-90", "opacity-0");
-    modalImage.classList.remove("scale-100", "opacity-100");
-    setTimeout(() => imageModal.classList.add("hidden"), 500);
+    modalImage.classList.add("opacity-0", "scale-95");
+    modalImage.classList.remove("opacity-100", "scale-100");
+    setTimeout(() => {
+      imageModal.classList.add("hidden");
+    }, 200);
   }
+
   function showPrev() {
     currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
     modalImage.src = imageList[currentIndex];
   }
+
   function showNext() {
     currentIndex = (currentIndex + 1) % imageList.length;
     modalImage.src = imageList[currentIndex];
   }
 
-  // Events
+  // Controls
   closeModal.addEventListener("click", closeModalFunc);
   prevBtn.addEventListener("click", showPrev);
   nextBtn.addEventListener("click", showNext);
@@ -439,6 +444,7 @@ async function loadGallery() {
     if (e.key === "ArrowRight") showNext();
   });
 }
+
 document.addEventListener("DOMContentLoaded", loadGallery);
 </script>
 
