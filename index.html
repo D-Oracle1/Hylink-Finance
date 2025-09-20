@@ -237,6 +237,93 @@
 </section>
 
 <!-- Scripts -->
+<script>
+  // Background Slideshow
+  const slides = document.querySelectorAll("#slideshow .slide");
+  let index = 0;
+  setInterval(() => {
+    slides[index].classList.remove("opacity-100");
+    slides[index].classList.add("opacity-0");
+    index = (index + 1) % slides.length;
+    slides[index].classList.remove("opacity-0");
+    slides[index].classList.add("opacity-100");
+  }, 5000);
+
+  // Typewriter Effect
+  const textArray = [
+    "Your Financial Future, Secred.",
+    "A dynamic financial company working with HY-LINK Multipurpose Cooperative Society.",
+    "Partnering with HY-LINK Global Services to help you grow your wealth.",
+    "Delivering trust, growth, and financial empowerment."
+  ];
+  let tIndex = 0, charIndex = 0, typingElement = document.querySelector(".typing");
+  function type() {
+    if (charIndex < textArray[tIndex].length) {
+      typingElement.textContent += textArray[tIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, 50);
+    } else {
+      setTimeout(erase, 2000);
+    }
+  }
+  function erase() {
+    if (charIndex > 0) {
+      typingElement.textContent = textArray[tIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, 30);
+    } else {
+      tIndex = (tIndex + 1) % textArray.length;
+      setTimeout(type, 100);
+    }
+  }
+  document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
+
+  // Counter Animation
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200;
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      };
+      updateCount();
+    });
+  };
+  let started = false;
+  window.addEventListener('scroll', () => {
+    const section = document.querySelector('.counter').closest('section');
+    const sectionTop = section.getBoundingClientRect().top;
+    if (!started && sectionTop < window.innerHeight - 100) {
+      animateCounters();
+      started = true;
+    }
+  });
+</script>
+
+<!-- Vanilla Tilt -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+<script>
+  VanillaTilt.init(document.querySelectorAll(".tilt"), {
+    max: 15,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.3,
+  });
+</script>
+
+<!-- AOS Init -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+<script>AOS.init();</script>
+
 <section id="gallery" class="py-16 bg-gray-100 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-8">Gallery</h2>
@@ -347,7 +434,6 @@ async function loadGallery() {
 
 document.addEventListener("DOMContentLoaded", loadGallery);
 </script>
-
 
 <!-- Advert Section -->
 <section id="advert" class="py-10 bg-gray-200">
