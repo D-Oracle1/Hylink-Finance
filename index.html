@@ -26,11 +26,11 @@
     <!-- Desktop Menu -->
     <nav class="hidden md:flex">
       <ul class="flex items-center space-x-6 font-semibold text-gray-300" data-aos="fade-left">
-        <li><a href="index.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Home</a></li>
-        <li><a href="aboutus.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">About</a></li>
-        <li><a href="services.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Services</a></li>
-        <li><a href="company.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Company</a></li>
-        <li><a href="blog.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Blog</a></li>
+        <li><a href="/" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Home</a></li>
+        <li><a href="#aboutus" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">About</a></li>
+        <li><a href="#services" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Services</a></li>
+        <li><a href="#company" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Company</a></li>
+        <li><a href="#blog" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Blog</a></li>
       </ul>
     </nav>
 
@@ -117,8 +117,8 @@
     </h1>
     <p class="mt-6 text-lg md:text-xl typing"></p>
     <div class="mt-6 space-x-4">
-      <a href="company.html" class="bg-orange-500 px-6 py-3 rounded-md text-white hover:bg-orange-600 transition transform hover:scale-105">Company</a>
-      <a href="aboutus.html" class="bg-white px-6 py-3 rounded-md text-gray-800 hover:bg-gray-200 transition transform hover:scale-105">About Us</a>
+      <a href="/" class="bg-orange-500 px-6 py-3 rounded-md text-white hover:bg-orange-600 transition transform hover:scale-105">Company</a>
+      <a href="/" class="bg-white px-6 py-3 rounded-md text-gray-800 hover:bg-gray-200 transition transform hover:scale-105">About Us</a>
     </div>
   </div>
 </section>
@@ -129,7 +129,7 @@
       <div data-aos="fade-right">
         <h2 class="text-3xl font-bold mb-6">Who We Are</h2>
         <p class="text-gray-600 mb-6">HY-LINK FINANCE LIMITED is a forward-thinking financial institution committed to driving sustainable financial growth and security. By partnering with HY-LINK Multipurpose Cooperative Society and HY-LINK Global Services, we provide a diverse portfolio of financial solutions tailored to individuals, businesses, and communities. Our mission is to empower our clients through strategic financial services that foster trust, innovation, and long-term prosperity.</p>
-        <a href="#services" class="bg-orange-500 px-5 py-3 rounded-md text-white hover:bg-orange-600 transition">Our Services</a>
+        <a href="Our Services" class="bg-orange-500 px-5 py-3 rounded-md text-white hover:bg-orange-600 transition">Our Services</a>
       </div>
       <div class="space-y-6" data-aos="fade-left">
         <div class="flex items-start space-x-4">
@@ -341,22 +341,29 @@
   <span id="closeModal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
 
   <!-- Prev button -->
-  <button id="prevBtn" class="absolute left-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">&larr;</button>
+  <button id="prevBtn"
+    class="absolute left-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">
+    &larr;
+  </button>
 
   <!-- Image -->
-  <img id="modalImage" class="rounded-lg shadow-lg max-w-[90%] max-h-[80vh] object-contain transform transition-transform duration-300 opacity-0 scale-95" />
+  <img id="modalImage"
+    class="rounded-lg shadow-lg max-w-[90%] max-h-[80vh] object-contain transform transition duration-300 opacity-0 scale-95" />
 
   <!-- Next button -->
-  <button id="nextBtn" class="absolute right-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">&rarr;</button>
+  <button id="nextBtn"
+    class="absolute right-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">
+    &rarr;
+  </button>
 </div>
-
 
 <script>
 async function loadGallery() {
-  const username = "D-Oracle1";   // 🔹 Change this
-  const repo = "Hylink-Finance";       // 🔹 Change this
-  const folder = "img";              // 🔹 Folder in your repo
-  const branch = "main";             // 🔹 Or "master" if that’s your default
+  // 🔹 CHANGE THESE TO YOUR GITHUB DETAILS
+  const username = "D-Oracle1";
+  const repo = "Hylink-Finance";
+  const folder = "img";   // must match your folder name
+  const branch = "main";  // or "master"
 
   const url = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
   const response = await fetch(url);
@@ -366,7 +373,7 @@ async function loadGallery() {
   const slider = document.getElementById("slider");
   const imageList = [];
 
-  // Load images dynamically
+  // Load images into gallery
   files.forEach(file => {
     if (file.type === "file" && file.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
       imageList.push(file.download_url);
@@ -376,7 +383,7 @@ async function loadGallery() {
       imgEl.className = "h-48 w-auto rounded-lg shadow flex-shrink-0 cursor-pointer";
       slider.appendChild(imgEl);
 
-      // 🔹 Open lightbox on click
+      // Open modal on click
       imgEl.addEventListener("click", () => openModal(imageList.indexOf(file.download_url)));
     }
   });
@@ -418,9 +425,7 @@ async function loadGallery() {
   function closeModalFunc() {
     modalImage.classList.add("opacity-0", "scale-95");
     modalImage.classList.remove("opacity-100", "scale-100");
-    setTimeout(() => {
-      imageModal.classList.add("hidden");
-    }, 200);
+    setTimeout(() => imageModal.classList.add("hidden"), 200);
   }
 
   function showPrev() {
@@ -447,6 +452,7 @@ async function loadGallery() {
 
 document.addEventListener("DOMContentLoaded", loadGallery);
 </script>
+
 
 
 <!-- Advert Section -->
@@ -626,11 +632,11 @@ document.addEventListener('DOMContentLoaded', () => {
     <div data-aos="fade-up" data-aos-delay="100">
       <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
       <ul class="space-y-2 text-sm">
-        <li><a href="index.html" class="hover:text-white">Home</a></li>
-        <li><a href="aboutus.html" class="hover:text-white">About</a></li>
-        <li><a href="services.html" class="hover:text-white">Services</a></li>
-        <li><a href="company.html" class="hover:text-white">Company</a></li>
-        <li><a href="blog.html" class="hover:text-white">Blog</a></li>
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="aboutus" class="hover:text-white">About</a></li>
+        <li><a href="services" class="hover:text-white">Services</a></li>
+        <li><a href="company" class="hover:text-white">Company</a></li>
+        <li><a href="blog" class="hover:text-white">Blog</a></li>
       </ul>
     </div>
 
