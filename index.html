@@ -328,12 +328,17 @@
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-8">Gallery</h2>
 
-    <!-- Horizontal scrollable container -->
-    <div class="relative w-full overflow-x-auto">
-      <div id="slider" class="flex space-x-4 pb-4 cursor-grab"></div>
+    <!-- Scrollable gallery -->
+    <div id="sliderWrapper" class="relative w-full overflow-x-auto">
+      <div id="slider" class="flex space-x-4 pb-6 cursor-grab"></div>
+      <!-- 🔹 Progress bar -->
+      <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-300 rounded-full overflow-hidden">
+        <div id="progressBar" class="h-1 bg-blue-500 transition-all duration-150"></div>
+      </div>
     </div>
   </div>
 </section>
+
 
 <!-- Modal -->
 <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50 opacity-0 transition-opacity duration-500">
@@ -354,9 +359,12 @@ async function loadGallery() {
   const response = await fetch(url);
   const files = await response.json();
 
+  const sliderWrapper = document.getElementById("sliderWrapper");
   const slider = document.getElementById("slider");
+  const progressBar = document.getElementById("progressBar");
   const imageList = [];
 
+  // Load images
   files.forEach(file => {
     if (file.type === "file" && file.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
       imageList.push(file.download_url);
@@ -370,76 +378,76 @@ async function loadGallery() {
     }
   });
 
-  // 🔹 Slow auto-scroll with hover pause
-  let scrollSpeed = 0.2; // pixels per frame
+  // 🔹 Update progress bar
+  function updateProgress() {
+    const maxScroll = sliderWrapper.scrollWidth - sliderWrapper.clientWidth;
+    const progress = sliderWrapper.scrollLeft / maxScroll;
+    progressBar.style.width = `${progress * 100}%`;
+  }
+
+  sliderWrapper.addEventListener("scroll", updateProgress);
+
+  // 🔹 Auto-scroll
+  let scrollSpeed = 0.2;
   let isPaused = false;
 
   function autoScroll() {
     if (!isPaused) {
-      slider.scrollLeft += scrollSpeed;
-      if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
-        slider.scrollLeft = 0; // loop back
+      sliderWrapper.scrollLeft += scrollSpeed;
+      if (sliderWrapper.scrollLeft + sliderWrapper.clientWidth >= sliderWrapper.scrollWidth) {
+        sliderWrapper.scrollLeft = 0;
       }
+      updateProgress();
     }
     requestAnimationFrame(autoScroll);
   }
   autoScroll();
 
-  // Pause on hover / resume on leave
-  slider.addEventListener("mouseenter", () => isPaused = true);
-  slider.addEventListener("mouseleave", () => isPaused = false);
-  slider.addEventListener("touchstart", () => isPaused = true);
-  slider.addEventListener("touchend", () => isPaused = false);
+  // Pause/resume
+  sliderWrapper.addEventListener("mouseenter", () => isPaused = true);
+  sliderWrapper.addEventListener("mouseleave", () => isPaused = false);
 
-  // 🔹 Drag-to-scroll (desktop + mobile)
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  slider.addEventListener("mousedown", (e) => {
+  // Drag-to-scroll
+  let isDown = false, startX, scrollLeft;
+  sliderWrapper.addEventListener("mousedown", (e) => {
     isDown = true;
-    slider.classList.add("cursor-grabbing");
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-    isPaused = true; // pause while dragging
+    startX = e.pageX - sliderWrapper.offsetLeft;
+    scrollLeft = sliderWrapper.scrollLeft;
+    sliderWrapper.classList.add("cursor-grabbing");
+    isPaused = true;
   });
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("cursor-grabbing");
-    isPaused = false;
-  });
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("cursor-grabbing");
-    isPaused = false;
-  });
-  slider.addEventListener("mousemove", (e) => {
+  sliderWrapper.addEventListener("mouseleave", () => { isDown = false; sliderWrapper.classList.remove("cursor-grabbing"); });
+  sliderWrapper.addEventListener("mouseup", () => { isDown = false; sliderWrapper.classList.remove("cursor-grabbing"); isPaused = false; });
+  sliderWrapper.addEventListener("mousemove", (e) => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // drag sensitivity
-    slider.scrollLeft = scrollLeft - walk;
+    const x = e.pageX - sliderWrapper.offsetLeft;
+    const walk = (x - startX) * 2;
+    sliderWrapper.scrollLeft = scrollLeft - walk;
+    updateProgress();
   });
 
-  // Touch support (mobile swipe)
+  // Touch swipe
   let touchStartX = 0;
-  slider.addEventListener("touchstart", (e) => {
+  sliderWrapper.addEventListener("touchstart", (e) => {
     touchStartX = e.touches[0].pageX;
-    scrollLeft = slider.scrollLeft;
+    scrollLeft = sliderWrapper.scrollLeft;
+    isPaused = true;
   });
-  slider.addEventListener("touchmove", (e) => {
+  sliderWrapper.addEventListener("touchmove", (e) => {
     const x = e.touches[0].pageX;
     const walk = (x - touchStartX) * 2;
-    slider.scrollLeft = scrollLeft - walk;
+    sliderWrapper.scrollLeft = scrollLeft - walk;
+    updateProgress();
   });
+  sliderWrapper.addEventListener("touchend", () => isPaused = false);
 
-  // 🔹 Modal functionality
+  /* 🔹 Modal code (same as before) */
   const imageModal = document.getElementById("imageModal");
   const modalImage = document.getElementById("modalImage");
   const closeModal = document.getElementById("closeModal");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
-
   let currentIndex = 0;
 
   function openModal(index) {
@@ -452,28 +460,18 @@ async function loadGallery() {
       modalImage.classList.add("scale-100", "opacity-100");
     });
   }
-
   function closeModalFunc() {
     imageModal.classList.add("opacity-0");
     modalImage.classList.add("scale-90", "opacity-0");
     modalImage.classList.remove("scale-100", "opacity-100");
     setTimeout(() => imageModal.classList.add("hidden"), 500);
   }
-
-  function showPrev() {
-    currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-    modalImage.src = imageList[currentIndex];
-  }
-
-  function showNext() {
-    currentIndex = (currentIndex + 1) % imageList.length;
-    modalImage.src = imageList[currentIndex];
-  }
+  function showPrev() { currentIndex = (currentIndex - 1 + imageList.length) % imageList.length; modalImage.src = imageList[currentIndex]; }
+  function showNext() { currentIndex = (currentIndex + 1) % imageList.length; modalImage.src = imageList[currentIndex]; }
 
   closeModal.addEventListener("click", closeModalFunc);
   prevBtn.addEventListener("click", showPrev);
   nextBtn.addEventListener("click", showNext);
-
   imageModal.addEventListener("click", (e) => { if (e.target === imageModal) closeModalFunc(); });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModalFunc();
