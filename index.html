@@ -2,195 +2,391 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hylink Finance</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HYLINK Finance Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- AOS Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body {font-family: 'Poppins', sans-serif;}
+  </style>
 </head>
-<body class="bg-gray-100">
+<body class="font-sans text-gray-800">
 
-  <!-- Navbar -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <div class="flex items-center space-x-2">
-        <img src="img/logo.png" alt="HYLINK Logo" class="h-10 w-10">
-        <span class="font-bold text-xl text-gray-700">HYLINK</span>
-      </div>
-      <nav class="space-x-6">
-        <a href="#gallerySection" class="text-gray-600 hover:text-blue-600">Gallery</a>
-        <a href="#advert" class="text-gray-600 hover:text-blue-600">Advert</a>
-        <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
-        <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
-      </nav>
-    </div>
-  </header>
+ <!-- Header -->
+<header class="fixed top-0 left-0 w-full bg-[#011430]/90 backdrop-blur-md shadow z-50 transition duration-300">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <!-- Logo -->
+    <img src="logo.png" alt="HYLINK Logo" class="w-40" data-aos="fade-right">
 
-  <!-- Hero Section -->
-  <section class="relative h-screen bg-cover bg-center flex items-center justify-center text-white"
-    style="background-image: url('img/image_fx.jpg')">
-    <div class="bg-black/50 p-10 rounded-lg text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Hylink Finance</h1>
-      <p class="text-lg md:text-2xl">Empowering your financial freedom</p>
-    </div>
-  </section>
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex">
+      <ul class="flex items-center space-x-6 font-semibold text-gray-300" data-aos="fade-left">
+        <li><a href="index.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Home</a></li>
+        <li><a href="aboutus.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">About</a></li>
+        <li><a href="services.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Services</a></li>
+        <li><a href="company.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Company</a></li>
+        <li><a href="blog.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Blog</a></li>
+      </ul>
+    </nav>
 
-  <!-- Gallery Section -->
-  <section id="gallerySection" class="py-10 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-2xl font-bold text-center mb-6">Gallery</h2>
-      <div id="slider" class="flex overflow-x-auto no-scrollbar"></div>
-    </div>
-  </section>
-
-  <!-- Advert Section -->
-  <section id="advert" class="py-10 bg-gray-200">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-2xl font-bold text-center mb-6">Advertisement</h2>
-      <div class="relative w-full overflow-hidden rounded-lg shadow-lg group">
-        <div id="advertSlides" class="flex transition-transform duration-700 ease-in-out"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-      <img src="img/markus-winkler-JXaxMUsuWSQ-unsplash.jpg" alt="About Image" class="rounded-lg shadow-lg">
-      <div>
-        <h2 class="text-3xl font-bold mb-4">About Us</h2>
-        <p class="text-gray-600 mb-4">At Hylink Finance, we are committed to building solutions that drive sustainable financial growth for individuals and businesses alike.</p>
-        <p class="text-gray-600">Our mission is to provide innovative services that bridge technology and finance seamlessly.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-gray-100">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
-      <p class="text-gray-600 mb-6">We’d love to hear from you. Get in touch for inquiries or partnership opportunities.</p>
-      <form class="max-w-2xl mx-auto grid gap-4">
-        <input type="text" placeholder="Your Name" class="p-3 border rounded">
-        <input type="email" placeholder="Your Email" class="p-3 border rounded">
-        <textarea placeholder="Your Message" class="p-3 border rounded h-32"></textarea>
-        <button type="submit" class="bg-blue-600 text-white py-3 rounded hover:bg-blue-700">Send Message</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-6 text-center">
-    <p>&copy; 2025 Hylink Finance. All rights reserved.</p>
-    <p class="text-gray-400 text-sm">Built with ❤️ and TailwindCSS</p>
-  </footer>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
-    <span id="closeLightbox" class="absolute top-4 right-6 text-white text-4xl cursor-pointer">&times;</span>
-    <button id="prevBtn" class="absolute left-6 text-white text-4xl font-bold px-3 py-1 bg-black/40 rounded-full hover:bg-black/70">&#10094;</button>
-    <img id="lightboxImg" src="" class="max-h-[90%] max-w-[90%] rounded shadow-lg" />
-    <button id="nextBtn" class="absolute right-6 text-white text-4xl font-bold px-3 py-1 bg-black/40 rounded-full hover:bg-black/70">&#10095;</button>
+    <!-- Mobile Hamburger -->
+    <button id="menu-btn" class="md:hidden flex flex-col justify-between w-6 h-5 focus:outline-none">
+      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
+      <span class="block w-full h-0.5 bg-white transition-opacity duration-300"></span>
+      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
+    </button>
   </div>
 
-  <script>
-  async function fetchImagesFromGitHub(folder) {
-    const username = "D-Oracle1";
-    const repo = "Hylink-Finance";
-    const branch = "main";
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out md:hidden bg-[#011430]/95 backdrop-blur-md">
+    <ul class="flex flex-col items-center space-y-6 py-6 font-semibold text-gray-300 opacity-0 translate-y-5 transition-all duration-500">
+      <li class="transition-all duration-500 delay-100"><a href="index.html" class="hover:text-orange-500 hover:scale-110 transform transition">Home</a></li>
+      <li class="transition-all duration-500 delay-200"><a href="aboutus.html" class="hover:text-orange-500 hover:scale-110 transform transition">About</a></li>
+      <li class="transition-all duration-500 delay-300"><a href="services.html" class="hover:text-orange-500 hover:scale-110 transform transition">Services</a></li>
+      <li class="transition-all duration-500 delay-400"><a href="company.html" class="hover:text-orange-500 hover:scale-110 transform transition">Company</a></li>
+      <li class="transition-all duration-500 delay-500"><a href="blog.html" class="hover:text-orange-500 hover:scale-110 transform transition">Blog</a></li>
+    </ul>
+  </div>
+</header>
 
-    const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
-    const response = await fetch(apiUrl);
-    return await response.json();
-  }
+<!-- JS for Toggle with Animations -->
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const spans = menuBtn.querySelectorAll("span");
+  const menuItems = mobileMenu.querySelector("ul");
 
-  async function initGallery() {
-    const files = await fetchImagesFromGitHub("img");
-    const imageList = [];
-    const slider = document.getElementById("slider");
+  menuBtn.addEventListener("click", () => {
+    // Animate hamburger into X
+    spans[0].classList.toggle("rotate-45");
+    spans[0].classList.toggle("translate-y-2");
 
-    files.forEach(file => {
-      if (file.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
-        imageList.push(file.download_url);
-      }
-    });
+    spans[1].classList.toggle("opacity-0");
 
-    let currentIndex = 0;
-    const doubledImages = [...imageList, ...imageList];
+    spans[2].classList.toggle("-rotate-45");
+    spans[2].classList.toggle("-translate-y-2");
 
-    doubledImages.forEach((src, index) => {
+    // Slide down / up menu
+    if (mobileMenu.classList.contains("max-h-0")) {
+      mobileMenu.classList.remove("max-h-0");
+      mobileMenu.classList.add("max-h-screen");
+
+      // Fade + slide in items
+      setTimeout(() => {
+        menuItems.classList.remove("opacity-0", "translate-y-5");
+        menuItems.classList.add("opacity-100", "translate-y-0");
+      }, 100);
+    } else {
+      mobileMenu.classList.remove("max-h-screen");
+      mobileMenu.classList.add("max-h-0");
+
+      // Fade out items
+      menuItems.classList.add("opacity-0", "translate-y-5");
+      menuItems.classList.remove("opacity-100", "translate-y-0");
+    }
+  });
+</script>
+
+
+<!-- Hero -->
+<section id="home" class="relative h-screen flex items-center justify-center overflow-hidden font-[Poppins]">
+
+  <!-- Background Slideshow Wrapper -->
+  <div id="slideshow" class="absolute inset-0">
+    <div class="slide absolute inset-0 bg-cover bg-center opacity-100 transition-opacity duration-1000" 
+        style="background-image: url('image_fx.jpg')"></div>
+    <div class="slide absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000" 
+        style="background-image: url('markus-winkler-JXaxMUsuWSQ-unsplash.jpg')"></div>
+    <div class="slide absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000" 
+        style="background-image: url('andrea-de-santis-_5uFHiNr9No-unsplash.jpg')"></div>
+  </div>
+
+  <!-- Overlays -->
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-[#011430]/50 to-[#011430]/50"></div>
+
+  <!-- Content -->
+  <div class="relative text-center text-white max-w-2xl" data-aos="zoom-in">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">
+      Welcome to <span class="text-orange-500">HY-LINK FINANCE LIMITED</span>
+    </h1>
+    <p class="mt-6 text-lg md:text-xl typing"></p>
+    <div class="mt-6 space-x-4">
+      <a href="company.html" class="bg-orange-500 px-6 py-3 rounded-md text-white hover:bg-orange-600 transition transform hover:scale-105">Company</a>
+      <a href="aboutus.html" class="bg-white px-6 py-3 rounded-md text-gray-800 hover:bg-gray-200 transition transform hover:scale-105">About Us</a>
+    </div>
+  </div>
+</section>
+
+  <!-- Company Overview -->
+  <section id="company" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center px-6">
+      <div data-aos="fade-right">
+        <h2 class="text-3xl font-bold mb-6">Who We Are</h2>
+        <p class="text-gray-600 mb-6">HY-LINK FINANCE LIMITED is a forward-thinking financial institution committed to driving sustainable financial growth and security. By partnering with HY-LINK Multipurpose Cooperative Society and HY-LINK Global Services, we provide a diverse portfolio of financial solutions tailored to individuals, businesses, and communities. Our mission is to empower our clients through strategic financial services that foster trust, innovation, and long-term prosperity.</p>
+        <a href="#services" class="bg-orange-500 px-5 py-3 rounded-md text-white hover:bg-orange-600 transition">Our Services</a>
+      </div>
+      <div class="space-y-6" data-aos="fade-left">
+        <div class="flex items-start space-x-4">
+          <div class="bg-orange-500 text-white w-12 h-12 flex items-center justify-center rounded-full">
+            <i class="fas fa-piggy-bank"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold">Savings</h4>
+            <p class="text-gray-600 text-sm">Flexible savings plans designed to help individuals and groups build financial security.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="bg-orange-500 text-white w-12 h-12 flex items-center justify-center rounded-full">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold">Fixed Deposit</h4>
+            <p class="text-gray-600 text-sm">Collaborative financial partnerships that enhance opportunities for wealth creation.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="bg-orange-500 text-white w-12 h-12 flex items-center justify-center rounded-full">
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold">Debt Financing</h4>
+            <p class="text-gray-600 text-sm">Affordable and convenient Loans with flexible repayment plan and Low Interest Rate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+<section id="services" class="py-20 bg-white text-center">
+  <h2 class="text-3xl font-bold mb-12" data-aos="fade-up">Our Services</h2>
+  
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 lg:grid-cols-5 gap-8 px-6">
+
+  <!-- Debt Financing -->
+  <a href="services.html#debt-financing" 
+     class="p-6 border rounded-lg shadow hover:shadow-xl transition transform hover:-translate-y-2 block">
+    <i class="fa-solid fa-sack-dollar text-orange-500 text-3xl mb-4"></i>
+    <h3 class="font-bold">Debt Financing</h3>
+    <p class="text-sm text-gray-600 mt-2">Affordable and convenient Loans with flexible repayment plan and Low Interest Rate.</p>
+  </a>
+
+  <!-- Savings -->
+  <a href="services.html#savings" 
+     class="p-6 border rounded-lg shadow hover:shadow-xl transition transform hover:-translate-y-2 block">
+    <i class="fas fa-piggy-bank text-orange-500 text-3xl mb-4"></i>
+    <h3 class="font-bold">Savings</h3>
+    <p class="text-sm text-gray-600 mt-2">Flexible savings plans designed to help individuals and groups build financial security.</p>
+  </a>
+
+  <!-- Mutual Funding -->
+  <a href="services.html#mutual-funding" 
+     class="p-6 border rounded-lg shadow hover:shadow-xl transition transform hover:-translate-y-2 block">
+    <i class="fas fa-hand-holding-usd text-orange-500 text-3xl mb-4"></i>
+    <h3 class="font-bold">Mutual Funding</h3>
+    <p class="text-sm text-gray-600 mt-2">Pooling resources together to create stronger financial backing for businesses and individuals.</p>
+  </a>
+
+  <!-- Financial Consultation -->
+  <a href="services.html#financial-consultation" 
+     class="p-6 border rounded-lg shadow hover:shadow-xl transition transform hover:-translate-y-2 block">
+    <i class="fas fa-briefcase text-orange-500 text-3xl mb-4"></i>
+    <h3 class="font-bold">Financial Consultation</h3>
+    <p class="text-sm text-gray-600 mt-2">Expert guidance to help businesses and finance grow, manage risks, and maximize profits.</p>
+  </a>
+
+
+  <!-- Fixed Deposit -->
+  <a href="services.html#fixed-deposit" 
+     class="p-6 border rounded-lg shadow hover:shadow-xl transition transform hover:-translate-y-2 block">
+    <i class="fas fa-handshake text-orange-500 text-3xl mb-4"></i>
+    <h3 class="font-bold">Fixed Deposit</h3>
+    <p class="text-sm text-gray-600 mt-2">Collaborative financial partnerships that enhance opportunities for wealth creation.</p>
+  </a>
+</div>
+
+</section>
+
+<!-- Impact Counters -->
+<section class="py-20 bg-gray-100 text-center font-[Poppins]">
+  <h2 class="text-3xl font-bold mb-12" data-aos="fade-up">Our Impact</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+    
+    <div data-aos="fade-up" data-aos-delay="100">
+      <h3 class="text-5xl font-bold text-orange-500 counter" data-target="1000">0</h3>
+      <p class="mt-2 text-gray-600">Happy Clients</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="200">
+      <h3 class="text-5xl font-bold text-orange-500 counter" data-target="1000000000">0</h3>
+      <p class="mt-2 text-gray-600">₦ Loans Issued</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="300">
+      <h3 class="text-5xl font-bold text-orange-500 counter" data-target="5">0</h3>
+      <p class="mt-2 text-gray-600">Years Experience</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Scripts -->
+<section id="gallery" class="py-16 bg-gray-100 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-8">Gallery</h2>
+
+    <!-- Slider wrapper -->
+    <div class="relative w-full overflow-hidden">
+      <div id="slider" class="flex w-max animate-slide"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal (kept same as yours) -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50 opacity-0 transition-opacity duration-500">
+  <span id="closeModal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
+  <button id="prevBtn" class="absolute left-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&larr;</button>
+  <img id="modalImage" class="max-w-4xl max-h-[90vh] rounded-lg shadow-lg transform scale-90 opacity-0 transition duration-500 ease-out" />
+  <button id="nextBtn" class="absolute right-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&rarr;</button>
+</div>
+
+<style>
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-slide {
+  animation: slide 40s linear infinite;
+}
+.animate-slide:hover {
+  animation-play-state: paused;
+}
+</style>
+
+<script>
+async function loadGallery() {
+  const username = "YourUserName";   // 🔹 Change this
+  const repo = "YourRepoName";       // 🔹 Change this
+  const folder = "img";              // 🔹 Folder in your repo
+  const branch = "main";             // 🔹 Or "master" if that’s your default
+
+  const url = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
+  const response = await fetch(url);
+  const files = await response.json();
+
+  const slider = document.getElementById("slider");
+  const imageList = [];
+
+  files.forEach(file => {
+    if (file.type === "file" && file.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
+      imageList.push(file.download_url);
+
       const imgEl = document.createElement("img");
-      imgEl.src = src;
-      imgEl.className = "h-48 w-auto rounded-lg shadow mx-2 cursor-pointer hover:scale-105 transition";
+      imgEl.src = file.download_url;
+      imgEl.className = "h-48 w-auto rounded-lg shadow mx-2 cursor-pointer";
       slider.appendChild(imgEl);
 
-      imgEl.addEventListener("click", () => openModal(index % imageList.length, imageList));
-    });
-
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightboxImg");
-    const closeBtn = document.getElementById("closeLightbox");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    function openModal(index, images) {
-      currentIndex = index;
-      showImage();
-      lightbox.classList.remove("hidden");
-      lightbox.classList.add("flex");
+      imgEl.addEventListener("click", () => openModal(imageList.indexOf(file.download_url)));
     }
+  });
 
-    function showImage() {
-      lightboxImg.src = imageList[currentIndex];
-    }
+  // Modal functionality
+  const imageModal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  const closeModal = document.getElementById("closeModal");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-    prevBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-      showImage();
-    });
+  let currentIndex = 0;
 
-    nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % imageList.length;
-      showImage();
-    });
-
-    closeBtn.addEventListener("click", () => {
-      lightbox.classList.add("hidden");
-      lightbox.classList.remove("flex");
-    });
-
-    lightbox.addEventListener("click", e => {
-      if (e.target === lightbox) {
-        lightbox.classList.add("hidden");
-        lightbox.classList.remove("flex");
-      }
-    });
-
-    document.addEventListener("keydown", e => {
-      if (lightbox.classList.contains("flex")) {
-        if (e.key === "Escape") {
-          lightbox.classList.add("hidden");
-          lightbox.classList.remove("flex");
-        } else if (e.key === "ArrowLeft") {
-          currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-          showImage();
-        } else if (e.key === "ArrowRight") {
-          currentIndex = (currentIndex + 1) % imageList.length;
-          showImage();
-        }
-      }
+  function openModal(index) {
+    currentIndex = index;
+    modalImage.src = imageList[currentIndex];
+    imageModal.classList.remove("hidden");
+    requestAnimationFrame(() => {
+      imageModal.classList.remove("opacity-0");
+      modalImage.classList.remove("scale-90", "opacity-0");
+      modalImage.classList.add("scale-100", "opacity-100");
     });
   }
 
-  async function initAdvert() {
-    const files = await fetchImagesFromGitHub("advert");
-    const advertList = [];
+  function closeModalFunc() {
+    imageModal.classList.add("opacity-0");
+    modalImage.classList.add("scale-90", "opacity-0");
+    modalImage.classList.remove("scale-100", "opacity-100");
+    setTimeout(() => imageModal.classList.add("hidden"), 500);
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+    modalImage.src = imageList[currentIndex];
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % imageList.length;
+    modalImage.src = imageList[currentIndex];
+  }
+
+  closeModal.addEventListener("click", closeModalFunc);
+  prevBtn.addEventListener("click", showPrev);
+  nextBtn.addEventListener("click", showNext);
+
+  imageModal.addEventListener("click", (e) => { if (e.target === imageModal) closeModalFunc(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModalFunc();
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", loadGallery);
+</script>
+
+
+<!-- Advert Section -->
+<section id="advert" class="py-10 bg-gray-200">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-2xl font-bold text-center mb-6">Advertisement</h2>
+    <div class="relative w-full overflow-hidden rounded-lg shadow-lg group">
+      <!-- Wrapper for slides -->
+      <div id="advertSlides" class="flex transition-transform duration-700 ease-in-out w-full">
+        <!-- Slides injected by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Keep your advert markup as-is -->
+<!-- <div id="advertSlides" class="flex transition-transform duration-700 ease-in-out"> ...</div> -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  (function () {
+    const advertList = [
+      "img/banner1.jpg",
+      "img/banner2.jpg",
+      "img/banner3.jpg",
+      "img/banner4.jpg"
+    ];
+
     const advertSlides = document.getElementById("advertSlides");
+    if (!advertSlides) {
+      console.error("advertSlides element not found");
+      return;
+    }
 
-    files.forEach(file => {
-      if (file.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
-        advertList.push(file.download_url);
-      }
-    });
+    // Clear any existing children (safe)
+    advertSlides.innerHTML = "";
+    // Ensure we have the correct transition initially
+    advertSlides.style.transition = "transform 0.7s ease-in-out";
 
+    // Build slides
     advertList.forEach(src => {
       const imgEl = document.createElement("img");
       imgEl.src = src;
@@ -199,35 +395,177 @@
       advertSlides.appendChild(imgEl);
     });
 
+    // Clone first slide for smooth looping
     if (advertSlides.children.length > 0) {
       const clone = advertSlides.children[0].cloneNode(true);
       advertSlides.appendChild(clone);
     }
 
+    // Scoped variables (no global collisions)
     let currentIndex = 0;
+    let slideInterval = null;
     const slideDurationMs = 4000;
-    const transitionDurationMs = 700;
+    const transitionDurationMs = 700; // should match CSS transition
 
     function showNextSlide() {
       currentIndex++;
       advertSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
 
+      // If we've reached the clone (end), jump back to start without visible jump
       if (currentIndex === advertList.length) {
+        // Wait until the current transition ends, then jump
         setTimeout(() => {
-          advertSlides.style.transition = "none";
+          advertSlides.style.transition = "none"; // disable transition for the jump
           currentIndex = 0;
           advertSlides.style.transform = `translateX(0%)`;
+
+          // Force reflow so the browser applies the transform without transition
           void advertSlides.offsetWidth;
+
+          // Re-enable transition for subsequent moves
           advertSlides.style.transition = "transform 0.7s ease-in-out";
         }, transitionDurationMs);
       }
     }
 
-    setInterval(showNextSlide, slideDurationMs);
-  }
+    function startSlideShow() {
+      stopSlideShow(); // safe-guard: don't create duplicates
+      slideInterval = setInterval(showNextSlide, slideDurationMs);
+    }
 
-  initGallery();
-  initAdvert();
+    function stopSlideShow() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+        slideInterval = null;
+      }
+    }
+
+    // Pause/resume on hover (works on desktop)
+    advertSlides.addEventListener("mouseenter", stopSlideShow);
+    advertSlides.addEventListener("mouseleave", startSlideShow);
+
+    // Start
+    startSlideShow();
+  })();
+});
+</script>
+
+
+
+
+  <!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6 items-center">
+    <div data-aos="fade-right">
+      <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
+      <p class="text-gray-600 mb-6">
+        We’re here to help you with all your financial needs. Reach out to us for inquiries, partnerships, or support. Our team will respond promptly.
+      </p>
+      
+       <!-- Contact Info List -->
+      <ul class="space-y-3 text-gray-600">
+        <!-- Phone -->
+        <li>
+          <a href="tel:+2348000000000" class="flex items-center hover:text-orange-500 transition-colors">
+            <i class="fas fa-phone text-orange-500 mr-2"></i>
+            +234 800 000 0000
+          </a>
+        </li>
+
+         <!-- WhatsApp -->
+        <li>
+          <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer"
+            class="flex items-center hover:text-orange-500 transition-colors">
+            <i class="fab fa-whatsapp text-orange-500 mr-2"></i>
+            Chat on WhatsApp
+          </a>
+        </li>
+
+         <!-- Email -->
+        <li>
+          <a href="mailto:hylinkfinance@gmail.com" class="flex items-center hover:text-orange-500 transition-colors">
+            <i class="fas fa-envelope text-orange-500 mr-2"></i>
+            hylinkfinance@gmail.com
+          </a>
+        </li>
+
+        <!-- Address -->
+        <li>
+          <a href="https://www.google.com/maps/place/34+Agip+Rd,+Mgbuosimiri,+Port+Harcourt+500102,+Rivers,+Nigeria"
+            target="_blank" rel="noopener noreferrer"
+            class="flex items-center hover:text-orange-500 transition-colors">
+            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i>
+            34 Agip Rd, Mgbuosimiri, Port Harcourt, Rivers State
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Map Embed -->
+   <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.624530367221!2d6.969517074111329!3d4.812417041671176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069cff2442b25c3%3A0x9d3eecff34001a3b!2s34%20Agip%20Rd%2C%20Mgbuosimiri%2C%20Port%20Harcourt%20500102%2C%20Rivers!5e0!3m2!1sen!2sng!4v1694451745643!5m2!1sen!2sng"
+      width="100%"
+      height="350"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="rounded-lg shadow-md">
+    </iframe>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#011430] text-gray-300 py-10">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6">
+    <div data-aos="fade-up">
+      <img src="logo.png" alt="Logo" class="w-40 mb-4">
+      <p class="text-sm">HY-LINK FINANCE LIMITED is committed to empowering clients through reliable savings, partnerships, funding, and consultancy services.</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="100">
+      <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="index.html" class="hover:text-white">Home</a></li>
+        <li><a href="aboutus.html" class="hover:text-white">About</a></li>
+        <li><a href="services.html" class="hover:text-white">Services</a></li>
+        <li><a href="company.html" class="hover:text-white">Company</a></li>
+        <li><a href="blog.html" class="hover:text-white">Blog</a></li>
+      </ul>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="200">
+      <h4 class="font-semibold mb-4 text-white">Contact</h4>
+      <p class="text-sm">hylinkfinance@gmail.com</p>
+      <p class="text-sm">+234 800 000 0000</p>
+      <div class="flex space-x-3 mt-4">
+        <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Newsletter Subscription moved to Footer -->
+    <div data-aos="fade-up" data-aos-delay="300">
+      <h4 class="font-semibold mb-4 text-white">Subscribe to our Newsletter</h4>
+      <form action="https://formspree.io/f/xandvzde" method="POST" class="flex flex-col gap-4">
+        <input type="email" name="email" placeholder="Enter your email" required class="p-3 border rounded-md text-black">
+        <button type="submit" class="bg-orange-500 hover:bg-gray-800 text-white px-6 py-3 rounded-md">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="text-center text-xs text-gray-500 mt-6">
+    © 2025 HY-LINK Finance Limited. All Rights Reserved.
+  </div>
+</footer>
+
+  <!-- Init AOS -->
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
   </script>
+
 </body>
 </html>
