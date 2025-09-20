@@ -43,161 +43,143 @@
     </button>
   </div>
 
- <script>
-async function fetchImages(folder) {
-  const username = "D-Oracle1";
-  const repo = "Hylink-Finance";
-  const branch = "main";
+  <script>
+  // Fetch images from a GitHub repo folder
+  async function fetchImages(folder) {
+    const username = "D-Oracle1";
+    const repo = "Hylink-Finance";
+    const branch = "main";
 
-  // 🔹 Use raw.githubusercontent.com instead of API
-  const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
-  const response = await fetch(apiUrl);
-  const files = await response.json();
+    const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
+    const response = await fetch(apiUrl);
+    const files = await response.json();
 
-  const imageList = [];
-  for (const file of files) {
-    if (file.type === "file") {
-      // Direct raw GitHub URL
-      imageList.push(`https://raw.githubusercontent.com/${username}/${repo}/${branch}/${folder}/${file.name}`);
+    const imageList = [];
+    for (const file of files) {
+      if (file.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
+        imageList.push(`https://raw.githubusercontent.com/${username}/${repo}/${branch}/${folder}/${file.name}`);
+      }
     }
+    return imageList;
   }
 
-  return imageList;
-}
+  // Gallery
+  async function initGallery() {
+    const imageList = await fetchImages("img");
+    const slider = document.getElementById("slider");
 
-    // Gallery
-    async function initGallery() {
-      const files = await fetchImagesFromGitHub("img");
-      const imageList = [];
-      const slider = document.getElementById("slider");
+    let currentIndex = 0;
+    const doubledImages = [...imageList, ...imageList];
 
-      files.forEach(file => {
-        if (file.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
-          imageList.push(file.download_url);
-        }
-      });
+    doubledImages.forEach((src, index) => {
+      const imgEl = document.createElement("img");
+      imgEl.src = src;
+      imgEl.className = "h-48 w-auto rounded-lg shadow mx-2 cursor-pointer hover:scale-105 transition";
+      slider.appendChild(imgEl);
 
-      let currentIndex = 0;
-      const doubledImages = [...imageList, ...imageList];
+      imgEl.addEventListener("click", () => openModal(index % imageList.length, imageList));
+    });
 
-      doubledImages.forEach((src, index) => {
-        const imgEl = document.createElement("img");
-        imgEl.src = src;
-        imgEl.className = "h-48 w-auto rounded-lg shadow mx-2 cursor-pointer hover:scale-105 transition";
-        slider.appendChild(imgEl);
+    // Lightbox controls
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const closeBtn = document.getElementById("closeLightbox");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
 
-        imgEl.addEventListener("click", () => openModal(index % imageList.length, imageList));
-      });
+    function openModal(index) {
+      currentIndex = index;
+      showImage();
+      lightbox.classList.remove("hidden");
+      lightbox.classList.add("flex");
+    }
 
-      // Lightbox controls
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightboxImg");
-      const closeBtn = document.getElementById("closeLightbox");
-      const prevBtn = document.getElementById("prevBtn");
-      const nextBtn = document.getElementById("nextBtn");
+    function showImage() {
+      lightboxImg.src = imageList[currentIndex];
+    }
 
-      function openModal(index, images) {
-        currentIndex = index;
-        showImage();
-        lightbox.classList.remove("hidden");
-        lightbox.classList.add("flex");
-      }
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      showImage();
+    });
 
-      function showImage() {
-        lightboxImg.src = imageList[currentIndex];
-      }
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % imageList.length;
+      showImage();
+    });
 
-      prevBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-        showImage();
-      });
+    closeBtn.addEventListener("click", () => {
+      lightbox.classList.add("hidden");
+      lightbox.classList.remove("flex");
+    });
 
-      nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % imageList.length;
-        showImage();
-      });
-
-      closeBtn.addEventListener("click", () => {
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox) {
         lightbox.classList.add("hidden");
         lightbox.classList.remove("flex");
-      });
+      }
+    });
 
-      lightbox.addEventListener("click", e => {
-        if (e.target === lightbox) {
+    document.addEventListener("keydown", e => {
+      if (lightbox.classList.contains("flex")) {
+        if (e.key === "Escape") {
           lightbox.classList.add("hidden");
           lightbox.classList.remove("flex");
-        }
-      });
-
-      document.addEventListener("keydown", e => {
-        if (lightbox.classList.contains("flex")) {
-          if (e.key === "Escape") {
-            lightbox.classList.add("hidden");
-            lightbox.classList.remove("flex");
-          } else if (e.key === "ArrowLeft") {
-            currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-            showImage();
-          } else if (e.key === "ArrowRight") {
-            currentIndex = (currentIndex + 1) % imageList.length;
-            showImage();
-          }
-        }
-      });
-    }
-
-    // Advert
-    async function initAdvert() {
-      const files = await fetchImagesFromGitHub("advert");
-      const advertList = [];
-      const advertSlides = document.getElementById("advertSlides");
-
-      files.forEach(file => {
-        if (file.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
-          advertList.push(file.download_url);
-        }
-      });
-
-      advertList.forEach(src => {
-        const imgEl = document.createElement("img");
-        imgEl.src = src;
-        imgEl.loading = "lazy";
-        imgEl.className = "w-full h-64 md:h-80 object-cover flex-shrink-0";
-        advertSlides.appendChild(imgEl);
-      });
-
-      // Clone first for infinite loop
-      if (advertSlides.children.length > 0) {
-        const clone = advertSlides.children[0].cloneNode(true);
-        advertSlides.appendChild(clone);
-      }
-
-      let currentIndex = 0;
-      const slideDurationMs = 4000;
-      const transitionDurationMs = 700;
-
-      function showNextSlide() {
-        currentIndex++;
-        advertSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        if (currentIndex === advertList.length) {
-          setTimeout(() => {
-            advertSlides.style.transition = "none";
-            currentIndex = 0;
-            advertSlides.style.transform = `translateX(0%)`;
-            void advertSlides.offsetWidth;
-            advertSlides.style.transition = "transform 0.7s ease-in-out";
-          }, transitionDurationMs);
+        } else if (e.key === "ArrowLeft") {
+          currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+          showImage();
+        } else if (e.key === "ArrowRight") {
+          currentIndex = (currentIndex + 1) % imageList.length;
+          showImage();
         }
       }
+    });
+  }
 
-      setInterval(showNextSlide, slideDurationMs);
+  // Advert
+  async function initAdvert() {
+    const advertList = await fetchImages("advert");
+    const advertSlides = document.getElementById("advertSlides");
+
+    advertList.forEach(src => {
+      const imgEl = document.createElement("img");
+      imgEl.src = src;
+      imgEl.loading = "lazy";
+      imgEl.className = "w-full h-64 md:h-80 object-cover flex-shrink-0";
+      advertSlides.appendChild(imgEl);
+    });
+
+    // Clone first for infinite loop
+    if (advertSlides.children.length > 0) {
+      const clone = advertSlides.children[0].cloneNode(true);
+      advertSlides.appendChild(clone);
     }
 
-    // Initialize both sections
-    initGallery();
-    initAdvert();
+    let currentIndex = 0;
+    const slideDurationMs = 4000;
+    const transitionDurationMs = 700;
+
+    function showNextSlide() {
+      currentIndex++;
+      advertSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      if (currentIndex === advertList.length) {
+        setTimeout(() => {
+          advertSlides.style.transition = "none";
+          currentIndex = 0;
+          advertSlides.style.transform = `translateX(0%)`;
+          void advertSlides.offsetWidth;
+          advertSlides.style.transition = "transform 0.7s ease-in-out";
+        }, transitionDurationMs);
+      }
+    }
+
+    setInterval(showNextSlide, slideDurationMs);
+  }
+
+  // Initialize both sections
+  initGallery();
+  initAdvert();
   </script>
 </body>
 </html>
-
-
