@@ -324,37 +324,24 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
 <script>AOS.init();</script>
 
-<section id="gallery" class="py-16 bg-gray-100 overflow-hidden">
+<section id="gallery" class="py-16 bg-gray-100">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-8">Gallery</h2>
 
-    <!-- Slider wrapper -->
-    <div class="relative w-full overflow-hidden">
-      <div id="slider" class="flex w-max animate-slide"></div>
+    <!-- Horizontal scrollable container -->
+    <div class="relative w-full overflow-x-auto">
+      <div id="slider" class="flex space-x-4 pb-4 cursor-grab"></div>
     </div>
   </div>
 </section>
 
-<!-- Modal (kept same as yours) -->
+<!-- Modal -->
 <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50 opacity-0 transition-opacity duration-500">
   <span id="closeModal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
   <button id="prevBtn" class="absolute left-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&larr;</button>
   <img id="modalImage" class="max-w-4xl max-h-[90vh] rounded-lg shadow-lg transform scale-90 opacity-0 transition duration-500 ease-out" />
   <button id="nextBtn" class="absolute right-6 text-white text-4xl font-bold px-4 py-2 bg-black/40 rounded-full hover:bg-black/70">&rarr;</button>
 </div>
-
-<style>
-@keyframes slide {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.animate-slide {
-  animation: slide 40s linear infinite;
-}
-.animate-slide:hover {
-  animation-play-state: paused;
-}
-</style>
 
 <script>
 async function loadGallery() {
@@ -376,14 +363,77 @@ async function loadGallery() {
 
       const imgEl = document.createElement("img");
       imgEl.src = file.download_url;
-      imgEl.className = "h-48 w-auto rounded-lg shadow mx-2 cursor-pointer";
+      imgEl.className = "h-48 w-auto rounded-lg shadow cursor-pointer flex-shrink-0";
       slider.appendChild(imgEl);
 
       imgEl.addEventListener("click", () => openModal(imageList.indexOf(file.download_url)));
     }
   });
 
-  // Modal functionality
+  // 🔹 Slow auto-scroll with hover pause
+  let scrollSpeed = 0.2; // pixels per frame
+  let isPaused = false;
+
+  function autoScroll() {
+    if (!isPaused) {
+      slider.scrollLeft += scrollSpeed;
+      if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+        slider.scrollLeft = 0; // loop back
+      }
+    }
+    requestAnimationFrame(autoScroll);
+  }
+  autoScroll();
+
+  // Pause on hover / resume on leave
+  slider.addEventListener("mouseenter", () => isPaused = true);
+  slider.addEventListener("mouseleave", () => isPaused = false);
+  slider.addEventListener("touchstart", () => isPaused = true);
+  slider.addEventListener("touchend", () => isPaused = false);
+
+  // 🔹 Drag-to-scroll (desktop + mobile)
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    slider.classList.add("cursor-grabbing");
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    isPaused = true; // pause while dragging
+  });
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.classList.remove("cursor-grabbing");
+    isPaused = false;
+  });
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.classList.remove("cursor-grabbing");
+    isPaused = false;
+  });
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // drag sensitivity
+    slider.scrollLeft = scrollLeft - walk;
+  });
+
+  // Touch support (mobile swipe)
+  let touchStartX = 0;
+  slider.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].pageX;
+    scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener("touchmove", (e) => {
+    const x = e.touches[0].pageX;
+    const walk = (x - touchStartX) * 2;
+    slider.scrollLeft = scrollLeft - walk;
+  });
+
+  // 🔹 Modal functionality
   const imageModal = document.getElementById("imageModal");
   const modalImage = document.getElementById("modalImage");
   const closeModal = document.getElementById("closeModal");
@@ -434,6 +484,7 @@ async function loadGallery() {
 
 document.addEventListener("DOMContentLoaded", loadGallery);
 </script>
+
 
 <!-- Advert Section -->
 <section id="advert" class="py-10 bg-gray-200">
