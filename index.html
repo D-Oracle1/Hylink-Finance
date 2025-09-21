@@ -343,22 +343,31 @@
   <!-- Close button -->
   <span id="closeModal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
 
-  <!-- Prev button -->
+   <!-- Prev button -->
   <button id="prevBtn"
-    class="absolute left-6 text-white text-3xl p-3 rounded-full bg-black/40 hover:bg-black/70 transition">
+    class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50
+           text-white text-2xl sm:text-3xl md:text-4xl 
+           p-2 sm:p-3 md:p-4 rounded-full bg-black/20 hover:bg-black/70 transition">
     <i class="fas fa-chevron-left"></i>
   </button>
 
   <!-- Image -->
   <img id="modalImage"
-    class="rounded-3xl shadow-2xl border border-white/10 max-w-[95%] max-h-[85vh] object-contain transform transition duration-500 opacity-0 scale-95" />
+    class="relative z-40 rounded-2xl shadow-2xl border border-white/10 
+           max-w-[95%] max-h-[80vh] sm:max-h-[85vh] 
+           object-contain transform transition-all duration-500 ease-in-out opacity-0 scale-95" />
 
   <!-- Next button -->
   <button id="nextBtn"
-    class="absolute right-6 text-white text-3xl p-3 rounded-full bg-black/40 hover:bg-black/70 transition">
+    class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50
+           text-white text-2xl sm:text-3xl md:text-4xl 
+           p-2 sm:p-3 md:p-4 rounded-full bg-black/20 hover:bg-black/70 transition">
     <i class="fas fa-chevron-right"></i>
   </button>
 </div>
+
+<!-- Font Awesome CDN -->
+<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
 
 <!-- Font Awesome CDN -->
 <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
