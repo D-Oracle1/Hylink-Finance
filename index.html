@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HYLINK Finance Limited</title>
+  <title>Hylink Finance Limited</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="log.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <!-- AOS Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
@@ -324,46 +325,51 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
 <script>AOS.init();</script>
 
-<section id="gallery" class="py-16 bg-gray-100">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-8">Gallery</h2>
+<section id="gallery" class="py-16 bg-[#27272a] text-white">
+  <div class="max-w-8xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-10">Gallery</h2>
 
-    <!-- Scrollable gallery -->
-    <div id="sliderWrapper" class="relative w-full overflow-x-auto">
-      <div id="slider" class="flex space-x-4 pb-4"></div>
-    </div>
+
+<!-- 📌 Scrollable Gallery -->
+
+  <div id="sliderWrapper"
+       class="relative w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 cursor-grab active:cursor-grabbing">
+    <div id="slider" class="flex space-x-4 pb-5"></div>
   </div>
-</section>
 
-<!-- Lightbox Modal -->
-<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
+
+<!-- 📌 Lightbox Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50">
   <!-- Close button -->
   <span id="closeModal" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
 
   <!-- Prev button -->
   <button id="prevBtn"
-    class="absolute left-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">
-    &larr;
+    class="absolute left-6 text-white text-3xl p-3 rounded-full bg-black/40 hover:bg-black/70 transition">
+    <i class="fas fa-chevron-left"></i>
   </button>
 
   <!-- Image -->
   <img id="modalImage"
-    class="rounded-lg shadow-lg max-w-[90%] max-h-[80vh] object-contain transform transition duration-300 opacity-0 scale-95" />
+    class="rounded-3xl shadow-2xl border border-white/10 max-w-[95%] max-h-[85vh] object-contain transform transition duration-500 opacity-0 scale-95" />
 
   <!-- Next button -->
   <button id="nextBtn"
-    class="absolute right-6 text-white text-4xl font-bold px-4 py-2 rounded-full bg-black/40 hover:bg-black/70">
-    &rarr;
+    class="absolute right-6 text-white text-3xl p-3 rounded-full bg-black/40 hover:bg-black/70 transition">
+    <i class="fas fa-chevron-right"></i>
   </button>
 </div>
 
+<!-- Font Awesome CDN -->
+<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+
+
 <script>
 async function loadGallery() {
-  // 🔹 CHANGE THESE TO YOUR GITHUB DETAILS
-  const username = "D-Oracle1";
-  const repo = "Hylink-Finance";
-  const folder = "img";   // must match your folder name
-  const branch = "main";  // or "master"
+  const username = "D-Oracle1";   // 🔹 Your GitHub username
+  const repo = "Hylink-Finance";  // 🔹 Your repo
+  const folder = "img";           // 🔹 Your folder
+  const branch = "main";          // 🔹 Branch
 
   const url = `https://api.github.com/repos/${username}/${repo}/contents/${folder}?ref=${branch}`;
   const response = await fetch(url);
@@ -373,25 +379,23 @@ async function loadGallery() {
   const slider = document.getElementById("slider");
   const imageList = [];
 
-  // Load images into gallery
+  // Load images
   files.forEach(file => {
     if (file.type === "file" && file.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
       imageList.push(file.download_url);
 
       const imgEl = document.createElement("img");
       imgEl.src = file.download_url;
-      imgEl.className = "h-48 w-auto rounded-lg shadow flex-shrink-0 cursor-pointer";
+      imgEl.className = "h-40 sm:h-48 md:h-56 w-auto rounded-lg shadow flex-shrink-0 cursor-pointer object-cover";
       slider.appendChild(imgEl);
 
-      // Open modal on click
       imgEl.addEventListener("click", () => openModal(imageList.indexOf(file.download_url)));
     }
   });
 
   // ✅ Auto-scroll
-  let scrollSpeed = 0.3; // adjust speed
+  let scrollSpeed = 0.4;
   let isPaused = false;
-
   function autoScroll() {
     if (!isPaused && sliderWrapper.scrollWidth > sliderWrapper.clientWidth) {
       sliderWrapper.scrollLeft += scrollSpeed;
@@ -405,6 +409,47 @@ async function loadGallery() {
 
   sliderWrapper.addEventListener("mouseenter", () => isPaused = true);
   sliderWrapper.addEventListener("mouseleave", () => isPaused = false);
+
+  // ✅ Drag / Swipe scroll
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  sliderWrapper.addEventListener("mousedown", (e) => {
+    isDown = true;
+    sliderWrapper.classList.add("active");
+    startX = e.pageX - sliderWrapper.offsetLeft;
+    scrollLeft = sliderWrapper.scrollLeft;
+  });
+
+  sliderWrapper.addEventListener("mouseleave", () => isDown = false);
+  sliderWrapper.addEventListener("mouseup", () => isDown = false);
+
+  sliderWrapper.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - sliderWrapper.offsetLeft;
+    const walk = (x - startX) * 1.2; // drag speed
+    sliderWrapper.scrollLeft = scrollLeft - walk;
+  });
+
+  // Touch support for mobile
+  let touchStartX, touchScrollLeft;
+  sliderWrapper.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = sliderWrapper.scrollLeft;
+    isPaused = true; // pause auto-scroll while swiping
+  });
+
+  sliderWrapper.addEventListener("touchmove", (e) => {
+    const x = e.touches[0].pageX;
+    const walk = (x - touchStartX) * 1.2;
+    sliderWrapper.scrollLeft = touchScrollLeft - walk;
+  });
+
+  sliderWrapper.addEventListener("touchend", () => {
+    isPaused = false;
+  });
 
   // ✅ Modal logic
   const imageModal = document.getElementById("imageModal");
@@ -448,10 +493,30 @@ async function loadGallery() {
     if (e.key === "ArrowLeft") showPrev();
     if (e.key === "ArrowRight") showNext();
   });
+
+  // ✅ Touch swipe inside modal
+  let modalTouchStartX = 0;
+  let modalTouchEndX = 0;
+
+  modalImage.addEventListener("touchstart", (e) => {
+    modalTouchStartX = e.changedTouches[0].screenX;
+  });
+
+  modalImage.addEventListener("touchend", (e) => {
+    modalTouchEndX = e.changedTouches[0].screenX;
+    handleModalSwipe();
+  });
+
+  function handleModalSwipe() {
+    const swipeThreshold = 50;
+    if (modalTouchEndX < modalTouchStartX - swipeThreshold) showNext(); // left
+    if (modalTouchEndX > modalTouchStartX + swipeThreshold) showPrev(); // right
+  }
 }
 
 document.addEventListener("DOMContentLoaded", loadGallery);
 </script>
+</section>
 
 
 
@@ -572,15 +637,15 @@ document.addEventListener('DOMContentLoaded', () => {
       <ul class="space-y-3 text-gray-600">
         <!-- Phone -->
         <li>
-          <a href="tel:+2348000000000" class="flex items-center hover:text-orange-500 transition-colors">
+          <a href="tel:+2348084663269" class="flex items-center hover:text-orange-500 transition-colors">
             <i class="fas fa-phone text-orange-500 mr-2"></i>
-            +234 800 000 0000
+            +234 808 466 3269
           </a>
         </li>
 
-         <!-- WhatsApp -->
+        <!-- WhatsApp -->
         <li>
-          <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer"
+          <a href="https://wa.link/ak5c50" target="_blank" rel="noopener noreferrer"
             class="flex items-center hover:text-orange-500 transition-colors">
             <i class="fab fa-whatsapp text-orange-500 mr-2"></i>
             Chat on WhatsApp
@@ -621,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-<!-- Footer -->
+  <!-- Footer -->
 <footer class="bg-[#011430] text-gray-300 py-10">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6">
     <div data-aos="fade-up">
@@ -643,7 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div data-aos="fade-up" data-aos-delay="200">
       <h4 class="font-semibold mb-4 text-white">Contact</h4>
       <p class="text-sm">hylinkfinance@gmail.com</p>
-      <p class="text-sm">+234 800 000 0000</p>
+      <p class="text-sm">+234 808 466 3269</p>
       <div class="flex space-x-3 mt-4">
         <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-twitter"></i></a>
