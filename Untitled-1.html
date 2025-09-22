@@ -1,0 +1,115 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronDown } from "lucide-react";
+
+export default function Home() {
+  const [serviceType, setServiceType] = useState("Web Development");
+
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans">
+      {/* Header */}
+      <header className="flex justify-between items-center px-8 py-4 bg-white shadow">
+        <h1 className="text-xl font-bold">Vicson Digitals</h1>
+        <nav className="flex gap-6 text-gray-600">
+          <a href="#" className="font-medium">Home</a>
+          <a href="#services" className="hover:text-black">Services</a>
+          <a href="#property" className="hover:text-black">Solutions</a>
+          <a href="#contact" className="hover:text-black">Contact</a>
+        </nav>
+        <div className="flex gap-3">
+          <Button variant="ghost">Login</Button>
+          <Button className="bg-black text-white">Sign Up</Button>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative bg-gray-200 p-10 rounded-b-3xl">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4">Discover Digital Solutions for Your Business</h2>
+          <p className="text-gray-600 mb-6">We provide cutting-edge ICT services, empowering individuals, businesses, and government agencies with innovative solutions.</p>
+        </div>
+
+        {/* Search/Filter Section */}
+        <div className="bg-white shadow-lg rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-4 max-w-4xl mx-auto mt-8">
+          <div>
+            <label className="text-gray-500 text-sm">Service Type</label>
+            <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
+              <span>{serviceType}</span>
+              <ChevronDown size={16} />
+            </div>
+          </div>
+          <div>
+            <label className="text-gray-500 text-sm">Industry</label>
+            <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
+              <span>Finance / Education / Government</span>
+              <ChevronDown size={16} />
+            </div>
+          </div>
+          <div>
+            <label className="text-gray-500 text-sm">Budget Range</label>
+            <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
+              <span>₦500k - ₦5m</span>
+              <ChevronDown size={16} />
+            </div>
+          </div>
+          <Button className="bg-black text-white px-6">Search</Button>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto py-12 px-6">
+        <Card className="rounded-2xl shadow">
+          <CardContent className="p-6">
+            <h3 className="text-2xl font-bold">10M+</h3>
+            <p className="text-gray-600">Happy Customers</p>
+          </CardContent>
+        </Card>
+        <Card className="rounded-2xl shadow">
+          <CardContent className="p-6">
+            <h3 className="text-2xl font-bold">12k+</h3>
+            <p className="text-gray-600">Projects Delivered</p>
+          </CardContent>
+        </Card>
+        <Card className="rounded-2xl shadow bg-black text-white">
+          <CardContent className="p-6">
+            <h3 className="text-2xl font-bold">8+</h3>
+            <p>Years of Excellence</p>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-16 bg-gray-100">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-8">What We Do</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="rounded-2xl shadow">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Web & Mobile Development</h3>
+                <p className="text-gray-600">Custom software, apps, and responsive websites tailored to your business needs.</p>
+              </CardContent>
+            </Card>
+            <Card className="rounded-2xl shadow">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">IT Consultancy & Systems</h3>
+                <p className="text-gray-600">Expert advice, system integration, and digital transformation strategies.</p>
+              </CardContent>
+            </Card>
+            <Card className="rounded-2xl shadow">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Network & Database Solutions</h3>
+                <p className="text-gray-600">Secure and scalable infrastructure for businesses and government agencies.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black text-white text-center py-6 mt-10">
+        <p>&copy; {new Date().getFullYear()} Vicson Digitals Ltd. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}

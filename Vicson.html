@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vicson Digitals Ltd</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50 font-sans">
+  <!-- Header -->
+  <header class="flex justify-between items-center px-8 py-4 bg-white shadow">
+    <h1 class="text-xl font-bold">Vicson Digitals</h1>
+    <nav class="flex gap-6 text-gray-600">
+      <a href="#" class="font-medium">Home</a>
+      <a href="#services" class="hover:text-black">Services</a>
+      <a href="#solutions" class="hover:text-black">Solutions</a>
+      <a href="#contact" class="hover:text-black">Contact</a>
+    </nav>
+    <div class="flex gap-3">
+      <button class="px-4 py-2 text-gray-600">Login</button>
+      <button class="px-4 py-2 bg-black text-white rounded">Sign Up</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gray-900 p-10 rounded-b-3xl">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl text-gray-100 font-bold mb-4">Discover Digital Solutions for Your Business</h2>
+      <p class="text-gray-100 mb-6">We provide cutting-edge ICT services, empowering individuals, businesses, and government agencies with innovative solutions.</p>
+    </div>
+
+    <!-- Search/Filter Section -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-4 max-w-4xl mx-auto mt-8">
+      <div>
+        <label class="text-gray-500 text-sm">Service Type</label>
+        <div class="flex items-center gap-2 border rounded-lg px-3 py-2">
+          <span>Web Development</span>
+          <span>▼</span>
+        </div>
+      </div>
+      <div>
+        <label class="text-gray-500 text-sm">Industry</label>
+        <div class="flex items-center gap-2 border rounded-lg px-3 py-2">
+          <span>Finance / Education / Government</span>
+          <span>▼</span>
+        </div>
+      </div>
+      <div>
+        <label class="text-gray-500 text-sm">Budget Range</label>
+        <div class="flex items-center gap-2 border rounded-lg px-3 py-2">
+          <span>₦500k - ₦5m</span>
+          <span>▼</span>
+        </div>
+      </div>
+      <button class="bg-black text-white px-6 py-2 rounded">Search</button>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto py-12 px-6">
+    <div class="rounded-2xl shadow p-6 bg-white">
+      <h3 class="text-2xl font-bold">10M+</h3>
+      <p class="text-gray-600">Happy Customers</p>
+    </div>
+    <div class="rounded-2xl shadow p-6 bg-white">
+      <h3 class="text-2xl font-bold">12k+</h3>
+      <p class="text-gray-600">Projects Delivered</p>
+    </div>
+    <div class="rounded-2xl shadow p-6 bg-red-900 text-white">
+      <h3 class="text-2xl font-bold">8+</h3>
+      <p>Years of Excellence</p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8">What We Do</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-2xl shadow p-6 bg-white">
+          <h3 class="text-xl font-semibold mb-2">Web & Mobile Development</h3>
+          <p class="text-gray-600">Custom software, apps, and responsive websites tailored to your business needs.</p>
+        </div>
+        <div class="rounded-2xl shadow p-6 bg-white">
+          <h3 class="text-xl font-semibold mb-2">IT Consultancy & Systems</h3>
+          <p class="text-gray-600">Expert advice, system integration, and digital transformation strategies.</p>
+        </div>
+        <div class="rounded-2xl shadow p-6 bg-white">
+          <h3 class="text-xl font-semibold mb-2">Network & Database Solutions</h3>
+          <p class="text-gray-600">Secure and scalable infrastructure for businesses and government agencies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white text-center py-6 mt-10">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Vicson Digitals Ltd. All rights reserved.</p>
+  </footer>
+</body>
+</html>
