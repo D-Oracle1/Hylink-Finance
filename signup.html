@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create your account - HY-LINK FINANCE LIMITED</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="log.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/brand.css">
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<main class="min-h-screen lg:grid lg:grid-cols-2">
+
+  <!-- Form side -->
+  <div class="flex flex-col justify-center px-6 py-12 sm:px-12 lg:px-16 xl:px-24 lg:order-2">
+    <div class="w-full max-w-md mx-auto">
+
+      <a href="index.html" class="inline-block mb-10">
+        <img src="assets/logo-brand.png" alt="HY-LINK Finance Limited" class="nav-logo w-36">
+      </a>
+
+      <span class="eyebrow">Get started</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mt-4">Create your account</h1>
+      <p class="lede text-sm mt-3">It takes about two minutes. No paperwork to print.</p>
+
+      <form class="mt-8 space-y-4" novalidate>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="first" class="block text-xs font-semibold text-slate-600 mb-2">First name</label>
+            <input id="first" name="first" type="text" autocomplete="given-name" required class="field" placeholder="Ada">
+          </div>
+          <div>
+            <label for="last" class="block text-xs font-semibold text-slate-600 mb-2">Last name</label>
+            <input id="last" name="last" type="text" autocomplete="family-name" required class="field" placeholder="Okoro">
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-xs font-semibold text-slate-600 mb-2">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" required class="field" placeholder="you@example.com">
+        </div>
+
+        <div>
+          <label for="phone" class="block text-xs font-semibold text-slate-600 mb-2">Phone number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required class="field" placeholder="+234 800 000 0000">
+        </div>
+
+        <div>
+          <label for="interest" class="block text-xs font-semibold text-slate-600 mb-2">What are you here for?</label>
+          <select id="interest" name="interest" class="field">
+            <option>Savings</option>
+            <option>Fixed Deposit</option>
+            <option>Debt Financing</option>
+            <option>Mutual Funding</option>
+            <option>Financial Consultation</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="password" class="block text-xs font-semibold text-slate-600 mb-2">Password</label>
+          <div class="relative">
+            <input id="password" name="password" type="password" autocomplete="new-password" required minlength="8"
+                   class="field pr-12" placeholder="At least 8 characters">
+            <button type="button" data-toggle-password="password"
+                    class="absolute inset-y-0 right-0 px-4 text-slate-400 hover:text-slate-700"
+                    aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+          </div>
+        </div>
+
+        <label class="flex items-start gap-2.5 text-sm text-slate-600 pt-1">
+          <input type="checkbox" required class="w-4 h-4 mt-0.5 rounded border-slate-300 text-orange-500 focus:ring-orange-500">
+          <span>I agree to the <a href="#" class="font-semibold text-orange-600 hover:text-orange-700">Terms of Service</a>
+            and <a href="#" class="font-semibold text-orange-600 hover:text-orange-700">Privacy Policy</a>.</span>
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-block mt-2">Create account</button>
+      </form>
+
+      <div class="flex items-center gap-4 my-7">
+        <span class="h-px flex-1 bg-slate-200"></span>
+        <span class="text-xs text-slate-400 font-medium">OR</span>
+        <span class="h-px flex-1 bg-slate-200"></span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <button type="button" class="btn btn-outline btn-block"><i class="fa-brands fa-google"></i> Google</button>
+        <button type="button" class="btn btn-outline btn-block"><i class="fa-brands fa-apple"></i> Apple</button>
+      </div>
+
+      <p class="text-sm text-slate-600 mt-8 text-center">
+        Already have an account?
+        <a href="https://app.hylinkfinance.com/login" class="font-semibold text-orange-600 hover:text-orange-700">Log in</a>
+      </p>
+      <p class="text-sm text-slate-500 mt-6 text-center">
+        <a href="index.html" class="hover:text-slate-800"><i class="fa-solid fa-arrow-left text-xs"></i> Back to site</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Art side -->
+  <div class="hidden lg:block p-5 lg:sticky lg:top-0 lg:h-screen lg:order-1">
+    <div class="hero-panel h-full min-h-[36rem] flex flex-col">
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('boss.jpg')"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#011430] via-[#011430]/70 to-[#011430]/30"></div>
+      <div class="relative h-full flex flex-col justify-end p-12">
+        <span class="eyebrow eyebrow-light w-fit">Join HY-LINK</span>
+        <h2 class="text-white text-4xl font-bold mt-5 leading-tight">Start building<br>real financial security.</h2>
+        <p class="text-white/70 text-sm mt-4 max-w-sm leading-relaxed">
+          Flexible savings plans, competitive fixed deposits and low-interest financing -
+          built around your goals, not ours.
+        </p>
+        <ul class="mt-8 space-y-3 text-sm text-white/80">
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-orange-500"></i> No hidden charges</li>
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-orange-500"></i> Flexible repayment plans</li>
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-orange-500"></i> A real person on the other end</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.querySelectorAll("[data-toggle-password]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var input = document.getElementById(btn.getAttribute("data-toggle-password"));
+      var show = input.type === "password";
+      input.type = show ? "text" : "password";
+      btn.innerHTML = show ? '<i class="fa-regular fa-eye-slash"></i>' : '<i class="fa-regular fa-eye"></i>';
+      btn.setAttribute("aria-label", show ? "Hide password" : "Show password");
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+/* ==========================================================================
+   HY-LINK FINANCE - Brand system
+   Design tokens + component layer. Loaded after the Tailwind CDN build.
+   ========================================================================== */
+
+:root{
+  /* Brand */
+  --hl-ink:        #011430;   /* primary navy  */
+  --hl-ink-2:      #0A2247;   /* raised navy   */
+  --hl-ink-3:      #143063;   /* hover navy    */
+  --hl-accent:     #F46F14;   /* brand orange, sampled from log.png */
+  --hl-accent-600: #D95E08;
+  --hl-blue:       #04217F;   /* brand blue, sampled from log.png   */
+  --hl-accent-soft:#FFF1E7;
+
+  /* Surfaces */
+  --hl-bg:         #FFFFFF;
+  --hl-muted:      #F5F7FA;
+  --hl-line:       #E5E9F0;
+
+  /* Type */
+  --hl-text:       #0B1220;
+  --hl-text-soft:  #56617A;
+
+  /* Shape + depth */
+  --hl-r:          16px;
+  --hl-r-lg:       24px;
+  --hl-r-xl:       32px;
+  --hl-shadow:     0 1px 2px rgba(1,20,48,.04), 0 12px 32px -12px rgba(1,20,48,.18);
+  --hl-shadow-lg:  0 2px 4px rgba(1,20,48,.04), 0 28px 60px -20px rgba(1,20,48,.30);
+
+  --hl-nav-h:      88px;      /* floating navbar clearance */
+}
+
+/* --------------------------------------------------------------- Base --- */
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:"Plus Jakarta Sans","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--hl-text);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+h1,h2,h3,h4,h5,.display{
+  font-family:"Sora","Plus Jakarta Sans",system-ui,sans-serif;
+  letter-spacing:-0.025em;
+  color:var(--hl-ink);
+}
+h1{ line-height:1.05; }
+h2{ line-height:1.15; }
+
+/* Headings that sit on dark art keep their utility colour */
+.text-white h1,.text-white h2,.text-white h3,.text-white h4,
+h1.text-white,h2.text-white,h3.text-white,h4.text-white{ color:#fff; }
+
+::selection{ background:var(--hl-accent); color:#fff; }
+
+/* Scrollbar */
+*::-webkit-scrollbar{ width:10px; height:10px; }
+*::-webkit-scrollbar-track{ background:var(--hl-muted); }
+*::-webkit-scrollbar-thumb{ background:#C7D0DE; border-radius:99px; border:2px solid var(--hl-muted); }
+*::-webkit-scrollbar-thumb:hover{ background:var(--hl-accent); }
+
+/* Offset anchor targets so the floating navbar never covers them */
+[id]{ scroll-margin-top:calc(var(--hl-nav-h) + 16px); }
+
+/* ---------------------------------------------------------- Navigation --- */
+
+.nav-shell{
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(18px) saturate(180%);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:var(--hl-shadow);
+  transition:background .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.is-stuck .nav-shell{
+  background:rgba(255,255,255,.95);
+  border-color:var(--hl-line);
+  box-shadow:var(--hl-shadow-lg);
+}
+
+/* Full-colour brand lockup (built from log.png + logo.png) for light surfaces.
+   The white logo.png is still used on the dark footer. */
+.nav-logo{ display:block; height:auto; }
+
+.nav-link{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  padding:.5rem .85rem;
+  font-size:.875rem;
+  font-weight:600;
+  color:var(--hl-text-soft);
+  border-radius:99px;
+  transition:color .25s ease, background .25s ease;
+}
+.nav-link:hover{ color:var(--hl-ink); background:rgba(1,20,48,.05); }
+.nav-link.is-active{ color:var(--hl-ink); }
+.nav-link.is-active::after{
+  content:"";
+  position:absolute; left:50%; bottom:.15rem;
+  width:16px; height:2px; margin-left:-8px;
+  border-radius:2px; background:var(--hl-accent);
+}
+
+/* Mobile drawer */
+.nav-drawer{
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transition:grid-template-rows .35s ease, opacity .25s ease;
+}
+.nav-drawer > div{ overflow:hidden; }
+.nav-open .nav-drawer{ grid-template-rows:1fr; opacity:1; }
+
+.burger span{ transition:transform .3s ease, opacity .2s ease; }
+.nav-open .burger span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.nav-open .burger span:nth-child(2){ opacity:0; }
+.nav-open .burger span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+/* ------------------------------------------------------------- Buttons --- */
+
+.btn{
+  display:inline-flex; align-items:center; gap:.6rem;
+  padding:.7rem 1.4rem;
+  border-radius:99px;
+  font-size:.875rem; font-weight:600;
+  line-height:1; white-space:nowrap;
+  min-height:2.4rem;            /* floor, so every pill lines up with its neighbour */
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:background .25s ease, color .25s ease, border-color .25s ease,
+             transform .25s ease, box-shadow .25s ease;
+}
+.btn:active{ transform:translateY(1px); }
+
+.btn-primary{ background:var(--hl-accent); color:#fff; box-shadow:0 10px 24px -10px rgba(244,111,20,.75); }
+.btn-primary:hover{ background:var(--hl-accent-600); box-shadow:0 14px 30px -10px rgba(244,111,20,.85); }
+
+.btn-dark{ background:var(--hl-ink); color:#fff; }
+.btn-dark:hover{ background:var(--hl-ink-3); }
+
+.btn-white{ background:#fff; color:var(--hl-ink); }
+.btn-white:hover{ background:var(--hl-accent); color:#fff; }
+
+.btn-ghost{ color:var(--hl-text-soft); background:transparent; }
+.btn-ghost:hover{ color:var(--hl-ink); background:rgba(1,20,48,.05); }
+
+.btn-outline{ border-color:var(--hl-line); color:var(--hl-ink); background:#fff; }
+.btn-outline:hover{ border-color:var(--hl-ink); }
+
+.btn-outline-light{ border-color:rgba(255,255,255,.45); color:#fff; }
+.btn-outline-light:hover{ background:rgba(255,255,255,.12); }
+
+.btn-block{ width:100%; justify-content:center; }
+
+/* Pill button with a trailing circular arrow, as on the reference nav */
+.btn-arrow{ padding-right:.35rem; }
+.btn-ico{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2rem; height:2rem; border-radius:99px;
+  font-size:.7rem;
+  background:#fff; color:var(--hl-ink);
+  transition:background .25s ease, color .25s ease;
+}
+.btn-ico i{ transform:rotate(-45deg); transition:transform .25s ease; }
+.btn:hover .btn-ico i{ transform:rotate(0deg); }
+
+/* Same pill, sized to stand level with a plain .btn next to it:
+   28px badge + 4px padding + 1px border each side = 38px, matching .btn. */
+.btn-arrow-sm{ padding-top:.25rem; padding-bottom:.25rem; padding-right:.25rem; }
+.btn-arrow-sm .btn-ico{ width:1.75rem; height:1.75rem; font-size:.6rem; }
+
+.btn-primary .btn-ico{ color:var(--hl-accent); }
+.btn-white .btn-ico{ background:var(--hl-ink); color:#fff; }
+.btn-white:hover .btn-ico{ background:#fff; color:var(--hl-accent); }
+
+/* --------------------------------------------------------- Section bits --- */
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.35rem .85rem;
+  border-radius:99px;
+  font-size:.7rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--hl-accent-600); background:var(--hl-accent-soft);
+}
+.eyebrow-light{ color:#fff; background:rgba(255,255,255,.14); }
+
+.lede{ color:var(--hl-text-soft); line-height:1.75; }
+
+/* Soft-lift card treatment */
+.card{
+  background:#fff;
+  border:1px solid var(--hl-line);
+  border-radius:var(--hl-r-lg);
+  box-shadow:var(--hl-shadow);
+  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:transparent;
+  box-shadow:var(--hl-shadow-lg);
+}
+
+/* Upgrade the legacy `border rounded-lg shadow` blocks already in the markup */
+.rounded-lg.shadow,.rounded-lg.shadow-lg{ border-radius:var(--hl-r-lg); }
+
+/* -------------------------------------------------------------- Forms --- */
+
+.field{
+  width:100%;
+  padding:.85rem 1.1rem;
+  border:1px solid var(--hl-line);
+  border-radius:14px;
+  background:#fff;
+  font-size:.9rem; color:var(--hl-text);
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.field::placeholder{ color:#98A2B3; }
+.field:focus{
+  outline:none;
+  border-color:var(--hl-accent);
+  box-shadow:0 0 0 4px rgba(244,111,20,.15);
+}
+.field-dark{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.16);
+  color:#fff;
+}
+.field-dark::placeholder{ color:rgba(255,255,255,.45); }
+
+/* ------------------------------------------------------------- Footer --- */
+
+.site-footer{ background:var(--hl-ink); color:#B9C4D6; }
+.site-footer h4{ color:#fff; }
+/* Plain footer links only - `.site-footer a` outranks `.btn-*` on specificity,
+   so without :not(.btn) it repaints button labels muted grey (and orange-on-
+   orange on hover). */
+.site-footer a:not(.btn){ color:#B9C4D6; transition:color .2s ease; }
+.site-footer a:not(.btn):hover{ color:var(--hl-accent); }
+.social-dot{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2.25rem; height:2.25rem; border-radius:99px;
+  color:#fff; background:rgba(255,255,255,.08);
+  transition:background .25s ease, color .25s ease, transform .25s ease;
+}
+.social-dot:hover{ background:var(--hl-accent); color:#fff; transform:translateY(-2px); }
+
+/* ---------------------------------------------------- Text rotator --- */
+
+/* Children share one grid cell, so the box is always as tall as the longest
+   line-up and nothing jumps as the headline cycles. */
+.rotator{ display:grid; align-items:start; }
+.rotator > span{
+  grid-area:1 / 1;
+  opacity:0;
+  transform:translateY(.3em);
+  /* leaving: clear out quickly so the two lines never double-expose */
+  transition:opacity .3s ease, transform .3s ease;
+}
+.rotator > span.is-active{
+  opacity:1;
+  transform:none;
+  /* entering: wait for the old line to go, then ease in */
+  transition:opacity .5s ease .28s, transform .6s cubic-bezier(.22,1,.36,1) .28s;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .rotator > span,
+  .rotator > span.is-active{ transition:opacity .2s linear; transform:none; }
+}
+
+/* ------------------------------------------------------ Page furniture --- */
+
+/* Rounded media panel used by every page hero */
+.hero-panel{
+  position:relative;
+  overflow:hidden;
+  border-radius:var(--hl-r-xl);
+  box-shadow:var(--hl-shadow-lg);
+}
+
+@media (max-width:640px){
+  :root{ --hl-nav-h:76px; }
+  .hero-panel{ border-radius:var(--hl-r-lg); }
+}

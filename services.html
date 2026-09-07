@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Services</title>
+  <meta name="description" content="Debt financing, savings, fixed deposits, mutual funding and financial consultation - tailored to how you actually manage money.">
+  <title>Our Services - HY-LINK FINANCE LIMITED</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -16,118 +17,93 @@
     scroll-behavior: smooth;}
     body {font-family: 'Poppins', sans-serif;}
 </style>
+  <link rel="icon" type="image/png" href="log.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/brand.css">
+  <script defer src="assets/site.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-white text-slate-800 antialiased">
 
-  <!-- Header -->
-<header class="fixed top-0 left-0 w-full bg-[#011430]/90 backdrop-blur-md shadow z-50 transition duration-300">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-    <!-- Logo -->
-    <img src="logo.png" alt="HYLINK Logo" class="w-40" data-aos="fade-right">
+<!-- ============================ Navbar ============================ -->
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 px-3 sm:px-5 pt-3 sm:pt-4">
+  <div class="mx-auto max-w-7xl">
 
-    <!-- Desktop Menu -->
-    <nav class="hidden md:flex">
-      <ul class="flex items-center space-x-6 font-semibold text-gray-300" data-aos="fade-left">
-        <li><a href="/" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Home</a></li>
-        <li><a href="aboutus.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">About</a></li>
-        <li><a href="services.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Services</a></li>
-        <li><a href="company.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Company</a></li>
-        <li><a href="blog.html" class="hover:text-orange-500 hover:scale-105 transform transition duration-300">Blog</a></li>
-      </ul>
-    </nav>
+    <div class="nav-shell rounded-[26px] lg:rounded-full pl-4 pr-3 py-2.5 sm:pl-6 sm:pr-2.5">
+      <div class="flex items-center justify-between gap-4">
 
-    <!-- Mobile Hamburger -->
-    <button id="menu-btn" class="md:hidden flex flex-col justify-between w-6 h-5 focus:outline-none">
-      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
-      <span class="block w-full h-0.5 bg-white transition-opacity duration-300"></span>
-      <span class="block w-full h-0.5 bg-white transition-transform duration-300"></span>
-    </button>
-  </div>
+        <!-- Logo -->
+        <a href="index.html" class="shrink-0" aria-label="HY-LINK Finance Limited - home">
+          <img src="assets/logo-brand.png" alt="HY-LINK Finance Limited" class="nav-logo w-32 sm:w-36">
+        </a>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out md:hidden bg-[#011430]/95 backdrop-blur-md">
-    <ul class="flex flex-col items-center space-y-6 py-6 font-semibold text-gray-300 opacity-0 translate-y-5 transition-all duration-500">
-      <li class="transition-all duration-500 delay-100"><a href="/" class="hover:text-orange-500 hover:scale-110 transform transition">Home</a></li>
-      <li class="transition-all duration-500 delay-200"><a href="aboutus.html" class="hover:text-orange-500 hover:scale-110 transform transition">About</a></li>
-      <li class="transition-all duration-500 delay-300"><a href="services.html" class="hover:text-orange-500 hover:scale-110 transform transition">Services</a></li>
-      <li class="transition-all duration-500 delay-400"><a href="company.html" class="hover:text-orange-500 hover:scale-110 transform transition">Company</a></li>
-      <li class="transition-all duration-500 delay-500"><a href="blog.html" class="hover:text-orange-500 hover:scale-110 transform transition">Blog</a></li>
-    </ul>
+        <!-- Primary links -->
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="aboutus.html" class="nav-link">About</a>
+          <a href="company.html" class="nav-link">Company</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </nav>
+
+        <!-- Account actions -->
+        <div class="hidden lg:flex items-center gap-1.5">
+          <a href="https://app.hylinkfinance.com/login" class="btn btn-ghost">Log in</a>
+          <a href="signup.html" class="btn btn-dark btn-arrow">
+            Sign Up
+            <span class="btn-ico"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+        </div>
+
+        <!-- Mobile toggle -->
+        <button id="menu-btn" type="button" aria-expanded="false" aria-label="Toggle navigation"
+                class="burger lg:hidden flex flex-col justify-between w-6 h-[18px] shrink-0">
+          <span class="block w-full h-0.5 rounded bg-[#011430]"></span>
+          <span class="block w-full h-0.5 rounded bg-[#011430]"></span>
+          <span class="block w-full h-0.5 rounded bg-[#011430]"></span>
+        </button>
+      </div>
+
+      <!-- Mobile drawer -->
+      <div class="nav-drawer lg:hidden">
+        <div>
+          <nav class="flex flex-col gap-1 pt-4 pb-2" aria-label="Mobile">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="aboutus.html" class="nav-link">About</a>
+            <a href="company.html" class="nav-link">Company</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+          </nav>
+          <div class="flex items-center gap-2 pt-3 pb-1 border-t border-slate-200/80 mt-2">
+            <a href="https://app.hylinkfinance.com/login" class="btn btn-outline btn-block">Log in</a>
+            <a href="signup.html" class="btn btn-dark btn-block">Sign Up</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </header>
 
-<!-- JS for Toggle with Animations -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const spans = menuBtn.querySelectorAll("span");
-  const menuItems = mobileMenu.querySelector("ul");
-
-  menuBtn.addEventListener("click", () => {
-    // Animate hamburger into X
-    spans[0].classList.toggle("rotate-45");
-    spans[0].classList.toggle("translate-y-2");
-
-    spans[1].classList.toggle("opacity-0");
-
-    spans[2].classList.toggle("-rotate-45");
-    spans[2].classList.toggle("-translate-y-2");
-
-    // Slide down / up menu
-    if (mobileMenu.classList.contains("max-h-0")) {
-      mobileMenu.classList.remove("max-h-0");
-      mobileMenu.classList.add("max-h-screen");
-
-      // Fade + slide in items
-      setTimeout(() => {
-        menuItems.classList.remove("opacity-0", "translate-y-5");
-        menuItems.classList.add("opacity-100", "translate-y-0");
-      }, 100);
-    } else {
-      mobileMenu.classList.remove("max-h-screen");
-      mobileMenu.classList.add("max-h-0");
-
-      // Fade out items
-      menuItems.classList.add("opacity-0", "translate-y-5");
-      menuItems.classList.remove("opacity-100", "translate-y-0");
-    }
-  });
-</script>
 
 
-<!-- Auto Active Link Script -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentPage = window.location.pathname.split("/").pop(); 
-    const links = document.querySelectorAll("nav ul li a");
+  <!-- ============================ Page hero ============================ -->
+  <section class="relative bg-white px-3 pb-3 sm:px-5 sm:pb-5" style="padding-top:calc(var(--hl-nav-h) + 8px)">
+    <div class="hero-panel min-h-[20rem] h-[54vh] flex flex-col justify-end">
 
-    links.forEach(link => {
-      if (link.getAttribute("href") === currentPage) {
-        link.classList.add("text-orange-500", "font-bold");
-      }
-    });
-  });
-</script>
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('1758091322679.jpg')"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#011430]/95 via-[#011430]/70 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#011430]/85 via-transparent to-[#011430]/40"></div>
 
+      <div class="relative px-6 py-10 sm:px-10 sm:py-14 lg:px-16 lg:pb-16" data-aos="fade-up">
+        <span class="eyebrow eyebrow-light">What we do</span>
+        <h1 class="text-white font-bold uppercase tracking-tight text-4xl sm:text-5xl lg:text-6xl mt-5">Our Services</h1>
+        <p class="mt-4 text-white/70 text-sm sm:text-base max-w-xl leading-relaxed">Tailored financial solutions for individuals, businesses and cooperatives - savings, deposits, funding and advisory.</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- Header -->
-  <section 
-  class="relative w-full h-[500px] flex flex-col justify-center items-center text-center px-6 bg-cover bg-top" 
-  style="background-image: url('1758091322679.jpg');"
->
-  <!-- Gradient + dark overlay -->
-  <div class="absolute inset-0 bg-gradient-to-r from-blue-800/70 to-orange-500/50 bg-black/40" 
-     data-aos="fade-in" data-aos-duration="1200"></div>
-
-
-  <!-- Content -->
-<div class="relative z-10 text-white" data-aos="fade-up" data-aos-delay="200">
-  <h2 class="text-4xl md:text-5xl font-bold mb-3">Our Services</h2>
-  <p class="text-lg md:text-xl max-w-2xl mx-auto">
-    Tailored financial solutions to meet your needs
-  </p>
-</div>
-</section>
 
 
   <!-- Services Overview Grid -->
@@ -136,34 +112,34 @@
       
       <!-- Card 1 -->
       <a href="#debt-financing" 
-         class="bg-white rounded-2xl shadow p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
-        <div class="text-blue-600 text-5xl mb-4">💳</div>
-        <h3 class="text-xl font-semibold mb-2">Debt Financing</h3>
-        <p class="text-gray-600 text-sm">Flexible loans with the best rates, quick process, and high amounts.</p>
+         class="card p-6">
+        <div class="w-12 h-12 rounded-2xl bg-[#FFF1E7] text-orange-600 flex items-center justify-center text-lg mb-5"><i class="fa-solid fa-sack-dollar"></i></div>
+        <h3 class="text-base font-bold mb-2">Debt Financing</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Flexible loans with the best rates, quick process, and high amounts.</p>
       </a>
 
       <!-- Card 2 -->
       <a href="#savings" 
-         class="bg-white rounded-2xl shadow p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
-        <div class="text-green-600 text-5xl mb-4">💰</div>
-        <h3 class="text-xl font-semibold mb-2">Savings</h3>
-        <p class="text-gray-600 text-sm">Grow your money with up to 17% interest annually.</p>
+         class="card p-6">
+        <div class="w-12 h-12 rounded-2xl bg-[#FFF1E7] text-orange-600 flex items-center justify-center text-lg mb-5"><i class="fas fa-piggy-bank"></i></div>
+        <h3 class="text-base font-bold mb-2">Savings</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Grow your money with up to 17% interest annually.</p>
       </a>
 
       <!-- Card 3 -->
       <a href="#fixed-deposit" 
-         class="bg-white rounded-2xl shadow p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
-        <div class="text-purple-600 text-5xl mb-4">🤝</div>
-        <h3 class="text-xl font-semibold mb-2">Fixed Deposit</h3>
-        <p class="text-gray-600 text-sm">Earn 30% annually on your capital with minimal effort.</p>
+         class="card p-6">
+        <div class="w-12 h-12 rounded-2xl bg-[#FFF1E7] text-orange-600 flex items-center justify-center text-lg mb-5"><i class="fas fa-handshake"></i></div>
+        <h3 class="text-base font-bold mb-2">Fixed Deposit</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Earn 30% annually on your capital with minimal effort.</p>
       </a>
 
       <!-- Card 4 -->
       <a href="#financial-consultation" 
-         class="bg-white rounded-2xl shadow p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
-        <div class="text-red-600 text-5xl mb-4">📊</div>
-        <h3 class="text-xl font-semibold mb-2">Financial Consultation</h3>
-        <p class="text-gray-600 text-sm">Expert guidance to help your business grow and stay competitive.</p>
+         class="card p-6">
+        <div class="w-12 h-12 rounded-2xl bg-[#FFF1E7] text-orange-600 flex items-center justify-center text-lg mb-5"><i class="fas fa-briefcase"></i></div>
+        <h3 class="text-base font-bold mb-2">Financial Consultation</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Expert guidance to help your business grow and stay competitive.</p>
       </a>
 
     </div>
@@ -175,7 +151,7 @@
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <!-- Text Left -->
       <div data-aos="fade-right">
-        <h2 class="text-blue-900 text-3xl font-bold mb-4">Debt Financing</h2>
+        <h2 class="text-[#011430] text-3xl font-bold mb-4">Debt Financing</h2>
         <p class="text-lg mb-6">
           We offer a variety of loan options to meet your financial needs with the best 
           interest rates, flexible repayment terms, high loan amount, and quick application process. 
@@ -201,7 +177,7 @@
   </section>
 
   <!-- Section 2: Savings -->
-  <section id="savings" class="max-w-6xl mx-auto py-16 px-6 bg-gray-100">
+  <section id="savings" class="max-w-6xl mx-auto py-16 px-6 bg-[#F5F7FA]">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <!-- Image Left -->
       <div data-aos="fade-right">
@@ -211,7 +187,7 @@
       </div>
       <!-- Text Right -->
       <div data-aos="fade-left">
-        <h2 class="text-blue-900 text-3xl font-bold mb-4">Savings</h2>
+        <h2 class="text-[#011430] text-3xl font-bold mb-4">Savings</h2>
         <p class="text-lg mb-6">
           We understand the importance of saving for the future. 
           That’s why we offer a range of savings products to help you reach your goals. 
@@ -228,7 +204,7 @@
   <div class="grid md:grid-cols-2 gap-12 items-center">
     <!-- Text Left -->
     <div data-aos="fade-right">
-      <h2 class="text-blue-900 text-3xl font-bold mb-4">Mutual Funding</h2>
+      <h2 class="text-[#011430] text-3xl font-bold mb-4">Mutual Funding</h2>
       <p class="text-lg mb-6">
         This service connects investors with borrowers seeking capital for their businesses, all backed by collateral to secure the loan. 
         By pooling resources, funders share the potential profits generated from the loan's interest payments, or, in case of default,
@@ -251,7 +227,7 @@
 </section>
 
   <!-- Section 4: Financial Consultation -->
- <section id="financial-consultation" class="max-w-6xl mx-auto py-16 px-6 bg-gray-100">
+ <section id="financial-consultation" class="max-w-6xl mx-auto py-16 px-6 bg-[#F5F7FA]">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <!-- Image Left -->
       <div data-aos="fade-right">
@@ -261,7 +237,7 @@
       </div>
       <!-- Text Right -->
       <div data-aos="fade-left">
-        <h2 class="text-blue-900 text-3xl font-bold mb-4">Financial Consultation</h2>
+        <h2 class="text-[#011430] text-3xl font-bold mb-4">Financial Consultation</h2>
         <p class="text-lg mb-6">
           Our consultancy services help businesses navigate challenges and unlock growth opportunities. 
           With expert insights and tailored strategies, we assist companies in optimizing operations, 
@@ -272,7 +248,6 @@
           and drive long-term success.
         </p>
       </div>
-       </div>
 </div>
 </section>
 
@@ -281,7 +256,7 @@
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <!-- Text Left -->
       <div data-aos="fade-right">
-        <h2 class="text-blue-900 text-3xl font-bold mb-4">Fixed Deposit</h2>
+        <h2 class="text-[#011430] text-3xl font-bold mb-4">Fixed Deposit</h2>
         <p class="text-lg mb-6">
           Pooling resources together to create stronger financial backing for businesses and individuals. 
         </p>
@@ -301,58 +276,85 @@
 
 
    <!-- Footer -->
-<footer class="bg-[#011430] text-gray-300 py-10">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6">
-    <div data-aos="fade-up">
-      <img src="logo.png" alt="Logo" class="w-40 mb-4">
-      <p class="text-sm">HY-LINK FINANCE LIMITED is committed to empowering clients through reliable savings, partnerships, funding, and consultancy services.</p>
-    </div>
+<!-- ============================ Footer ============================ -->
+<footer class="site-footer">
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-10">
 
-    <div data-aos="fade-up" data-aos-delay="100">
-      <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
-      <ul class="space-y-2 text-sm">
-        <li><a href="/" class="hover:text-white">Home</a></li>
-        <li><a href="aboutus.html" class="hover:text-white">About</a></li>
-        <li><a href="services.html" class="hover:text-white">Services</a></li>
-        <li><a href="company.html" class="hover:text-white">Company</a></li>
-        <li><a href="blog.html" class="hover:text-white">Blog</a></li>
-      </ul>
-    </div>
-
-    <div data-aos="fade-up" data-aos-delay="200">
-      <h4 class="font-semibold mb-4 text-white">Contact</h4>
-      <p class="text-sm">hylinkfinance@gmail.com</p>
-      <p class="text-sm">+234 808 466 3269</p>
-      <div class="flex space-x-3 mt-4">
-        <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="text-white hover:text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+    <!-- CTA strip -->
+    <div class="rounded-[26px] bg-white/[0.04] border border-white/10 px-6 py-8 sm:px-10 sm:py-10 mb-14
+                flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6" data-aos="fade-up">
+      <div>
+        <h4 class="text-2xl sm:text-3xl font-bold text-white">Ready to grow your money with us?</h4>
+        <p class="text-sm text-slate-400 mt-2 max-w-xl">Open an account in minutes and get matched with a savings, deposit or financing plan built around your goals.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <a href="signup.html" class="btn btn-primary btn-arrow">
+          Create Account
+          <span class="btn-ico"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="aboutus.html#contact" class="btn btn-outline-light">Talk to us</a>
       </div>
     </div>
 
-    <!-- Newsletter Subscription moved to Footer -->
-    <div data-aos="fade-up" data-aos-delay="300">
-      <h4 class="font-semibold mb-4 text-white">Subscribe to our Newsletter</h4>
-      <form action="https://formspree.io/f/xandvzde" method="POST" class="flex flex-col gap-4">
-        <input type="email" name="email" placeholder="Enter your email" required class="p-3 border rounded-md text-black">
-        <button type="submit" class="bg-orange-500 hover:bg-gray-800 text-white px-6 py-3 rounded-md">Subscribe</button>
-      </form>
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+
+      <div data-aos="fade-up">
+        <img src="logo.png" alt="HY-LINK Finance Limited" class="w-36 mb-5">
+        <p class="text-sm leading-relaxed text-slate-400">
+          HY-LINK FINANCE LIMITED empowers individuals, businesses and communities through reliable
+          savings, fixed deposits, mutual funding, debt financing and financial consultancy.
+        </p>
+        <div class="flex gap-2 mt-6">
+          <a href="#" class="social-dot" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-dot" aria-label="X"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-dot" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-dot" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h4 class="font-semibold mb-5 text-white text-sm tracking-wide">Company</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="company.html">Our Company</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="150">
+        <h4 class="font-semibold mb-5 text-white text-sm tracking-wide">Services</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="services.html#savings">Savings</a></li>
+          <li><a href="services.html#fixed-deposit">Fixed Deposit</a></li>
+          <li><a href="services.html#debt-financing">Debt Financing</a></li>
+          <li><a href="services.html#mutual-funding">Mutual Funding</a></li>
+          <li><a href="services.html#financial-consultation">Consultation</a></li>
+        </ul>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h4 class="font-semibold mb-5 text-white text-sm tracking-wide">Stay in the loop</h4>
+        <p class="text-sm text-slate-400 mb-4">Market notes and product updates, once a month.</p>
+        <form action="https://formspree.io/f/xandvzde" method="POST" class="flex flex-col gap-3">
+          <input type="email" name="email" placeholder="you@example.com" required class="field field-dark">
+          <button type="submit" class="btn btn-primary btn-block">Subscribe</button>
+        </form>
+        <div class="mt-6 space-y-1.5 text-sm text-slate-400">
+          <p><i class="fa-regular fa-envelope w-4 text-orange-500"></i> hylinkfinance@gmail.com</p>
+          <p><i class="fa-solid fa-phone w-4 text-orange-500"></i> +234 808 466 3269</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="text-center text-xs text-gray-500 mt-6">
-    © 2025 HY-LINK Finance Limited. All Rights Reserved.
+
+    <div class="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-500">&copy; 2025 HY-LINK Finance Limited. All Rights Reserved.</p>
+      <p class="text-xs text-slate-500">Built on trust, growth and financial empowerment.</p>
+    </div>
   </div>
 </footer>
 
 
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-  </script>
 </body>
 </html>
 
