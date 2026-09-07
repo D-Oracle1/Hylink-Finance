@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/login.html",
+      "destination": "https://hylink-ems.vercel.app/login",
+      "permanent": true
+    },
+    {
+      "source": "/signup.html",
+      "destination": "https://hylink-ems.vercel.app/signup",
+      "permanent": true
+    }
+  ]
+}

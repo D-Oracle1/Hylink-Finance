@@ -50,8 +50,8 @@
 
         <!-- Account actions -->
         <div class="hidden lg:flex items-center gap-1.5">
-          <a href="https://app.hylinkfinance.com/login" class="btn btn-ghost">Log in</a>
-          <a href="signup.html" class="btn btn-dark btn-arrow">
+          <a href="https://hylink-ems.vercel.app/login" class="btn btn-ghost">Log in</a>
+          <a href="https://hylink-ems.vercel.app/signup" class="btn btn-dark btn-arrow">
             Sign Up
             <span class="btn-ico"><i class="fa-solid fa-arrow-right"></i></span>
           </a>
@@ -77,8 +77,8 @@
             <a href="blog.html" class="nav-link">Blog</a>
           </nav>
           <div class="flex items-center gap-2 pt-3 pb-1 border-t border-slate-200/80 mt-2">
-            <a href="https://app.hylinkfinance.com/login" class="btn btn-outline btn-block">Log in</a>
-            <a href="signup.html" class="btn btn-dark btn-block">Sign Up</a>
+            <a href="https://hylink-ems.vercel.app/login" class="btn btn-outline btn-block">Log in</a>
+            <a href="https://hylink-ems.vercel.app/signup" class="btn btn-dark btn-block">Sign Up</a>
           </div>
         </div>
       </div>
@@ -107,7 +107,10 @@
   <!-- Blog Section -->
   <section id="blog" class="py-20 bg-[#F5F7FA] text-center flex-grow">
     <h2 class="text-3xl font-bold mb-10">Our Blog</h2>
-    <div class="flex flex-wrap justify-center gap-6">
+    <div id="blog-list" class="flex flex-wrap justify-center gap-6">
+      <!-- Replaced by posts from the CMS. Kept as the empty state: if nothing
+           is published, or the feed is unreachable, the page reads as it did
+           before rather than showing an error. -->
       <div class="card p-6 w-80">
         <i class="fas fa-newspaper text-4xl text-orange-500"></i>
         <h3 class="text-xl font-semibold mt-4">Coming Soon</h3>
@@ -116,10 +119,11 @@
       <div class="card p-6 w-80">
         <i class="fas fa-pen-fancy text-4xl text-orange-500"></i>
         <h3 class="text-xl font-semibold mt-4">Coming Soon</h3>
-        <p class="text-sm text-gray-600 mt-2">We’ll be sharing financial tips, updates, and success stories soon.</p>
+        <p class="text-sm text-gray-600 mt-2">Our team is preparing something worth reading.</p>
       </div>
     </div>
-  </section> <!-- ✅ Closed Blog Section -->
+
+</section> <!-- ✅ Closed Blog Section -->
 
   <!-- Footer -->
 <!-- ============================ Footer ============================ -->
@@ -134,7 +138,7 @@
         <p class="text-sm text-slate-400 mt-2 max-w-xl">Open an account in minutes and get matched with a savings, deposit or financing plan built around your goals.</p>
       </div>
       <div class="flex flex-wrap items-center gap-3 shrink-0">
-        <a href="signup.html" class="btn btn-primary btn-arrow">
+        <a href="https://hylink-ems.vercel.app/signup" class="btn btn-primary btn-arrow">
           Create Account
           <span class="btn-ico"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
@@ -200,6 +204,59 @@
   </div>
 </footer>
 
+
+<script>
+  // Pull published posts from the EMS content feed. Anything goes wrong and we
+  // leave the "Coming Soon" markup alone — the page must never look broken.
+  (function () {
+    var FEED = 'https://hylink-ems.vercel.app/api/public/posts';
+    var list = document.getElementById('blog-list');
+    if (!list) return;
+
+    function escapeHtml(value) {
+      return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      var d = new Date(iso);
+      return isNaN(d) ? '' : d.toLocaleDateString('en-GB', {
+        day: 'numeric', month: 'short', year: 'numeric'
+      });
+    }
+
+    function card(post) {
+      var image = post.coverImage
+        ? '<img src="' + escapeHtml(post.coverImage) + '" alt="" ' +
+          'class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">'
+        : '<i class="fas fa-newspaper text-4xl text-orange-500"></i>';
+
+      return '' +
+        '<article class="card p-6 w-80 text-left">' +
+          image +
+          '<p class="text-[11px] font-semibold uppercase tracking-widest text-orange-600">' +
+            escapeHtml(post.category || 'General') +
+          '</p>' +
+          '<h3 class="text-xl font-semibold mt-2">' + escapeHtml(post.title) + '</h3>' +
+          '<p class="text-sm text-gray-600 mt-2">' + escapeHtml(post.excerpt || '') + '</p>' +
+          '<p class="text-xs text-gray-400 mt-4">' +
+            escapeHtml(post.authorName || '') +
+            (post.publishedAt ? ' &middot; ' + formatDate(post.publishedAt) : '') +
+          '</p>' +
+        '</article>';
+    }
+
+    fetch(FEED)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data || !data.posts || data.posts.length === 0) return;
+        list.innerHTML = data.posts.map(card).join('');
+      })
+      .catch(function () { /* keep the empty state */ });
+  })();
+</script>
 </body>
 </html>
 
