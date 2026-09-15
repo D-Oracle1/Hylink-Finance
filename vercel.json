@@ -2,12 +2,12 @@
   "redirects": [
     {
       "source": "/login.html",
-      "destination": "https://hylink-ems.vercel.app/login",
+      "destination": "https://app.hylinkfinance.com/login",
       "permanent": true
     },
     {
       "source": "/signup.html",
-      "destination": "https://hylink-ems.vercel.app/signup",
+      "destination": "https://app.hylinkfinance.com/signup",
       "permanent": true
     }
   ]
