@@ -36,6 +36,16 @@
 
 html{ scroll-behavior:smooth; }
 
+/* Never scroll sideways. The AOS fade-left/fade-right animations start each
+   element 100px past the edge of the screen; without this, a phone could
+   drag the whole page (and the fixed navbar with it) left and right.
+   `clip` rather than `hidden` where supported: it trims the overflow without
+   making the page a scroll container, so nothing sticky or fixed changes. */
+html, body{ max-width:100%; overflow-x:hidden; }
+@supports (overflow:clip){
+  html, body{ overflow-x:clip; }
+}
+
 body{
   font-family:"Plus Jakarta Sans","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
   color:var(--hl-text);
